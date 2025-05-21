@@ -8,12 +8,13 @@ def main():
     if song is not None:
         initialize_history()
         log_listen(song["title"], song["artist"], song["album"], song["year"], song["genre"], song["duration"])
-        # print(f"Title: {song["title"]}",
-              # f"Artist: {song["artist"]}",
-              # f"Album: {song["album"]}",
-              # f"Year: {song["year"]}",
-              # f"Genre: {song["genre"]}",
-              # f"Duration: {song["duration"]}", sep="\n")
+
+        print(f"Title: {song["title"]}",
+              f"Artist: {song["artist"]}",
+              f"Album: {song["album"]}",
+              f"Year: {song["year"]}",
+              f"Genre: {song["genre"]}",
+              f"Duration: {song["duration"]}", sep="\n")
 
 
 def get_listen():
@@ -31,16 +32,19 @@ def get_listen():
 	end tell
 	"""
 
-	result = subprocess.run(["osascript", "-e", applescript], capture_output=True, text=True)
-	
-	if result.stdout:
-		items = result.stdout.strip().split("|||")
-		return {"title": items[0],
-        		"artist": items[1],
-        		"album": items[2],
-        		"year": int(items[3]),
-        		"genre": items[4],
-        		"duration": int(items[5].split(",")[0])}
+	try:
+		result = subprocess.run(["osascript", "-e", applescript], capture_output=True, text=True)
+	except FileNotFoundError:
+		print("Apple Music Not Responding")
+	else:
+		if result.stdout:
+			items = result.stdout.strip().split("|||")
+			return {"title": items[0],
+        			"artist": items[1],
+        			"album": items[2],
+        			"year": int(items[3]),
+        			"genre": items[4],
+        			"duration": int(items[5].split(",")[0])}
 	
 	return None
 
