@@ -40,8 +40,8 @@ $ crontab -e
 
 This will invoke a text editor, in which the following line must be ...
 
-````
+```
 * * * * * <path/to/python> <path/to/tool-echoes/log.py>
-````
+```
 
 ...
