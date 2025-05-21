@@ -177,5 +177,5 @@ cython_debug/
 .DS_Store
 pdf/
 history.db
-tests.py
+test.py
 *.swp
