@@ -172,3 +172,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Custom
+.DS_Store
+pdf/
+history.db
+tests.py
+*.swp
