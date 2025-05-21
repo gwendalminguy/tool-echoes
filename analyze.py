@@ -26,6 +26,7 @@ def top_titles():
         LIMIT 5
     """)
     items = cursor.fetchall()
+    connection.close()
     
     for item in items:
         print(f"{item['artist']}: {item['title']}".ljust(75), f"({item['times']})".rjust(10))
@@ -51,6 +52,7 @@ def top_artists():
         LIMIT 5
     """)
     items = cursor.fetchall()
+    connection.close()
     
     for item in items:
         length = int(int(item['length']) / 60)
@@ -77,6 +79,7 @@ def top_genres():
         LIMIT 5
     """)
     items = cursor.fetchall()
+    connection.close()
     
     for item in items:
         length = int(int(item['length']) / 60)
@@ -103,6 +106,7 @@ def total_unique_titles():
         )
     """)
     count = cursor.fetchone()[0]
+    connection.close()
 
     return count
 
@@ -122,6 +126,7 @@ def total_unique_artists():
         WHERE strftime('%Y', date)='{year}'
     """)
     count = cursor.fetchone()[0]
+    connection.close()
 
     return count
 
@@ -140,5 +145,6 @@ def total_unique_genres():
         WHERE strftime('%Y', date)='{year}'
     """)
     count = cursor.fetchone()[0]
+    connection.close()
 
     return count
