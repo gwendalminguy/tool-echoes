@@ -34,7 +34,7 @@ $ git clone https://github.com/gwendalminguy/tool-echoes.git
 
 To let Echoes log a history of each song listened, an automation must be set. This can be achieved by using `Crontab`, a utility that can be used to execute of a script on a regular schedule.
 
-````
+```
 $ crontab -e
 ```
 
