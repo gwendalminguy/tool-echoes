@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import sqlite3
 from analyze import top_titles, top_artists, top_genres, total_unique_titles, total_unique_artists, total_unique_genres
 
 
