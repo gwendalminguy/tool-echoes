@@ -1,20 +1,22 @@
 #!/usr/bin/python3
 import subprocess
-from gestion import initialize_history, delete_history, log_listen
+import sqlite3
+from gestion import initialize_history, delete_history, check_listen, log_listen
 
 
 def main():
     song = get_listen()
     if song is not None:
         initialize_history()
-        log_listen(song["title"], song["artist"], song["album"], song["year"], song["genre"], song["duration"])
+        if not check_listen(song):
+        	log_listen(song["title"], song["artist"], song["album"], song["year"], song["genre"], song["duration"])
 
-        print(f"Title: {song["title"]}",
-              f"Artist: {song["artist"]}",
-              f"Album: {song["album"]}",
-              f"Year: {song["year"]}",
-              f"Genre: {song["genre"]}",
-              f"Duration: {song["duration"]}", sep="\n")
+        #print(f"Title: {song["title"]}",
+              #f"Artist: {song["artist"]}",
+              #f"Album: {song["album"]}",
+              #f"Year: {song["year"]}",
+              #f"Genre: {song["genre"]}",
+              #f"Duration: {song["duration"]}", sep="\n")
 
 
 def get_listen():
