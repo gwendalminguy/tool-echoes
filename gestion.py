@@ -92,7 +92,7 @@ def check_listen(song):
     
     if last == []:
         return False
-    elif last[0][0] == song["title"] and last[0][1] == song[0]["artist"]:
+    elif last[0][0] == song["title"] and last[0][1] == song["artist"]:
         return True
     return False
 
