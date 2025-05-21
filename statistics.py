@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 import sqlite3
-from gestion import initialize_history, delete_history, log_listen
 from analyze import top_titles, top_artists, top_genres, total_unique_titles, total_unique_artists, total_unique_genres
 
 
 def main():
-	initialize_history()
-
 	print("--------------------------------------------------------------------------------------")
 	titles = top_titles()
 	print("--------------------------------------------------------------------------------------")
