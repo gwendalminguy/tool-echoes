@@ -1,3 +1,4 @@
+import subprocess
 import sqlite3
 from datetime import datetime
 """
@@ -81,15 +82,17 @@ def check_listen(song):
     connection = sqlite3.connect(DB_PATH)
     cursor = connection.cursor()
     cursor.execute("""
-        SELECT *
+        SELECT title, artist
         FROM listen
         ORDER BY rowid DESC
         LIMIT 1
     """)
-    last = cursor.fetchone()[0]
+    last = cursor.fetchall()
     connection.close()
-
-    if last["title"] == song["title"] and last["artist"] == song["artist"]:
+    
+    if last == []:
+        return False
+    elif last[0][0] == song["title"] and last[0][1] == song[0]["artist"]:
         return True
     return False
 
