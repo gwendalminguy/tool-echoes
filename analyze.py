@@ -28,7 +28,7 @@ def top_titles():
     items = cursor.fetchall()
     
     for item in items:
-        print(f"{item['artist']}: {item['title']}".ljust(50), f"({item['times']})".rjust(10))
+        print(f"{item['artist']}: {item['title']}".ljust(75), f"({item['times']})".rjust(10))
 
     return items
 
@@ -54,7 +54,7 @@ def top_artists():
     
     for item in items:
         length = int(int(item['length']) / 60)
-        print(f"{item['artist']}:".ljust(50), f"{length} minutes".rjust(10))
+        print(f"{item['artist']}:".ljust(75), f"{length} minutes".rjust(10))
 
     return items
 
@@ -80,7 +80,7 @@ def top_genres():
     
     for item in items:
         length = int(int(item['length']) / 60)
-        print(f"{item['genre']}:".ljust(50), f"{length} minutes".rjust(10))
+        print(f"{item['genre']}:".ljust(75), f"{length} minutes".rjust(10))
 
     return items
 
