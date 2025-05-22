@@ -9,13 +9,14 @@ def main():
 	artists = top_artists()
 	genres = top_genres()
 
-	title_count = total_unique_titles()
-	artist_count = total_unique_artists()
-	genre_count = total_unique_genres()
-
-	count = {"titles": title_count, "artists": artist_count, "genres": genre_count}
+	count = {
+		"total_titles": total_unique_titles(),
+		"total_artists": total_unique_artists(),
+		"total_genres": total_unique_genres()
+	}
 
 	export_statistics(titles, artists, genres, count)
+
 	show_statistics(titles, artists, genres, count)
 
 
@@ -25,9 +26,19 @@ def export_statistics(titles, artists, genres, count):
 	result = {"count": {"titles": count["titles"], "artists": count["artists"], "genres": count["genres"]}}
 
 	for i in range(5):
-		result["title_" + str(i + 1)] = {"title": titles[i]["title"], "artist": titles[i]["artist"], "times": titles[i]["times"]}
-		result["artist_" + str(i + 1)] = {"artist": artists[i]["artist"], "length": int(int(artists[i]['length']) / 60)}
-		result["genre_" + str(i + 1)] = {"genre": genres[i]["genre"], "length": int(int(genres[i]['length']) / 60)}
+		result["title_" + str(i + 1)] = {
+			"title": titles[i]["title"],
+			"artist": titles[i]["artist"],
+			"times": titles[i]["times"]
+		}
+		result["artist_" + str(i + 1)] = {
+			"artist": artists[i]["artist"],
+			"length": int(int(artists[i]['length']) / 60)
+		}
+		result["genre_" + str(i + 1)] = {
+			"genre": genres[i]["genre"],
+			"length": int(int(genres[i]['length']) / 60)
+		}
 
 	with open(f"{year}.json", "w", encoding="utf-8") as file:
 		json.dump(result, file, ensure_ascii=False, indent=4)
