@@ -23,7 +23,11 @@ def main():
 def export_statistics(titles, artists, genres, count):
 	year = str(datetime.now().year)
 
-	result = {"count": {"titles": count["titles"], "artists": count["artists"], "genres": count["genres"]}}
+	result = {"count": {
+    	"total_titles": count["total_titles"],
+    	"total_artists": count["total_artists"],
+    	"total_genres": count["total_genres"]}
+    }
 
 	for i in range(5):
 		result["title_" + str(i + 1)] = {
