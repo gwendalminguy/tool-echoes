@@ -16,7 +16,6 @@ def main():
 	}
 
 	export_statistics(titles, artists, genres, count)
-
 	show_statistics(titles, artists, genres, count)
 
 
@@ -61,7 +60,7 @@ def show_statistics(titles, artists, genres, count):
 		length = int(int(item['length']) / 60)
 		print(f"{item['genre']}:".ljust(75), f"{length} minutes".rjust(10))
 	print("--------------------------------------------------------------------------------------")
-	print(f"{count["titles"]} titles from {count["artists"]} artists of {count["genres"]} genres", end="\n\n")
+	print(f"{count["total_titles"]} titles from {count["total_artists"]} artists of {count["total_genres"]} genres", end="\n\n")
 
 
 if __name__ == "__main__":
