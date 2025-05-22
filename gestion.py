@@ -48,7 +48,7 @@ def get_listen():
 	tell application "Music"
 		if player state is playing then
 			set trackName to get name of current track
-			set artistName to get artist of current track
+			set artistName to get album artist of current track
 			set albumName to get album of current track
 			set albumYear to get year of current track
 			set trackGenre to get genre of current track
