@@ -10,7 +10,7 @@ year = str(datetime.now().year)
 
 def top_titles():
     """
-    Displays titles ordered by occurences.
+    Computes top titles ordered by occurences.
 
     Return: dictionary of result
     """
@@ -33,7 +33,7 @@ def top_titles():
 
 def top_artists():
     """
-    Displays artists ordered by total duration.
+    Computes top artists ordered by total duration.
 
     Return: dictionary of result
     """
@@ -56,7 +56,7 @@ def top_artists():
 
 def top_genres():
     """
-    Displays genres ordered by total duration.
+    Computes top genres ordered by total duration.
 
     Return: dictionary of result
     """
@@ -79,7 +79,7 @@ def top_genres():
 
 def total_unique_titles():
     """
-    Displays total unique titles count.
+    Computes total unique titles count.
 
     Return: total count
     """
@@ -102,7 +102,7 @@ def total_unique_titles():
 
 def total_unique_artists():
     """
-    Displays total unique artists count.
+    Computes total unique artists count.
 
     Return: total count
     """
@@ -121,7 +121,7 @@ def total_unique_artists():
 
 def total_unique_genres():
     """
-    Displays total unique genres count.
+    Computes total unique genres count.
 
     Return: total count
     """
@@ -137,3 +137,23 @@ def total_unique_genres():
     connection.close()
 
     return count
+
+
+def total_duration():
+    """
+    Computes total duration.
+
+    Return: total duration
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT SUM(duration)
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+    """)
+    duration = cursor.fetchone()[0]
+    connection.close()
+    print(duration)
+    return duration
