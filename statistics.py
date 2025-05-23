@@ -1,28 +1,35 @@
 #!/usr/bin/python3
 import os
 import json
+import argparse
 from datetime import datetime
 from analyze import top_titles, top_artists, top_genres, total_unique_titles, total_unique_artists, total_unique_genres, total_duration
 
 
 def main():
-    titles = top_titles()
-    artists = top_artists()
-    genres = top_genres()
+    current = str(datetime.now().year)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-y", "--year", default=current, type=str, help="year to process")
+    args = parser.parse_args()
+    year = (args.year).lower()
+
+    titles = top_titles(year)
+    artists = top_artists(year)
+    genres = top_genres(year)
 
     count = {
-        "total_titles": total_unique_titles(),
-        "total_artists": total_unique_artists(),
-        "total_genres": total_unique_genres(),
-        "total_duration": total_duration()
+        "total_titles": total_unique_titles(year),
+        "total_artists": total_unique_artists(year),
+        "total_genres": total_unique_genres(year),
+        "total_duration": total_duration(year)
     }
 
-    export_statistics(titles, artists, genres, count)
+    export_statistics(titles, artists, genres, count, year)
     show_statistics(titles, artists, genres, count)
 
 
-def export_statistics(titles, artists, genres, count):
-    year = str(datetime.now().year)
+def export_statistics(titles, artists, genres, count, year):
 
     result = {
         "count": {
@@ -50,6 +57,7 @@ def export_statistics(titles, artists, genres, count):
 
     if not os.path.exists("archives/"):
         os.mkdir("archives")
+
     with open(f"archives/{year}.json", "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=4)
 

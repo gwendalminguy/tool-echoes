@@ -4,11 +4,10 @@ from datetime import datetime
 analyze.py
 Module containing functions to analyze the history database.
 """
-DB_PATH = "history.db"
-year = str(datetime.now().year)
+DB_PATH = "./history.db"
 
 
-def top_titles():
+def top_titles(year):
     """
     Computes top titles ordered by occurences.
 
@@ -31,7 +30,7 @@ def top_titles():
     return items
 
 
-def top_artists():
+def top_artists(year):
     """
     Computes top artists ordered by total duration.
 
@@ -54,7 +53,7 @@ def top_artists():
     return items
 
 
-def top_genres():
+def top_genres(year):
     """
     Computes top genres ordered by total duration.
 
@@ -77,7 +76,7 @@ def top_genres():
     return items
 
 
-def total_unique_titles():
+def total_unique_titles(year):
     """
     Computes total unique titles count.
 
@@ -100,7 +99,7 @@ def total_unique_titles():
     return count
 
 
-def total_unique_artists():
+def total_unique_artists(year):
     """
     Computes total unique artists count.
 
@@ -119,7 +118,7 @@ def total_unique_artists():
 
     return count
 
-def total_unique_genres():
+def total_unique_genres(year):
     """
     Computes total unique genres count.
 
@@ -139,7 +138,7 @@ def total_unique_genres():
     return count
 
 
-def total_duration():
+def total_duration(year):
     """
     Computes total duration.
 
@@ -155,5 +154,5 @@ def total_duration():
     """)
     duration = cursor.fetchone()[0]
     connection.close()
-    print(duration)
+
     return duration
