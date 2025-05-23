@@ -33,19 +33,23 @@ $ git clone https://github.com/gwendalminguy/tool-echoes.git
 
 **2. Setting an automation**
 
-To let Echoes log an entry for each song listened in the history database, an automation must be set. This can be achieved by using the `Crontab` utility (pre-installed on macOS), that can be used to execute of a script on a regular schedule.
+To let Echoes log an entry for each song listened in the history database, an automation must be set. This can be achieved by launching the `automation` bash script using this command:
+
+```
+$ ./automation
+```
+
+This will allow the execution on a regular schedule of the `log.py` script. The user might be prompted by the system to authorize the automation, to allow it to execute the script. If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
 
 ```
 $ crontab -e
 ```
 
-This will invoke a text editor, in which the following line must be written:
+This will invoke a text editor, in which the following line must be written (both paths must be changed to match the locations of python3 and the `log.py` file from the cloned directory):
 
 ```
 * * * * * <path/to/python3> <path/to/tool-echoes/log.py>
 ```
-
-The paths must be changed to match the locations...
 
 ## 🖥️ Usage
 
