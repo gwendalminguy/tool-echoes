@@ -1,0 +1,66 @@
+body{
+	background-color: black;
+}
+
+.flex-container-years {
+	background-color: grey;
+	display: flex;
+	height: 100px;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+}
+
+.year {
+	background-color: lightgrey;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	height: 50px;
+	width: 200px;
+	border-radius: 25px;
+	text-align: center;
+}
+
+.flex-container-cards {
+	background-color: grey;
+	display: flex;
+	height: 525px;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+}
+
+.card {
+	background-color: lightgray;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	height: 450px;
+	width: 300px;
+	border-radius: 15px;
+	text-align: center;
+}
+
+.circle {
+	background-color: lightgray;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	display: flex;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	justify-content: center;
+	align-items: center;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right:15px solid grey;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid grey;
+}
