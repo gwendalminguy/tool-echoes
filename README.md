@@ -13,6 +13,7 @@ The project contains several files and directories, which are the following:
 | Files | Description |
 | :---- | :---------- |
 | [`analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/analyze.py) | The module containing functions to extract statistics from the history database. |
+| [`automation`](https://github.com/gwendalminguy/tool-echoes/blob/main/automation) | The bash script setting an automation to run `log.py` on a regular schedule. |
 | [`gestion.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/gestion.py) | The module containing functions to manage the history database. |
 | [`index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/index.html) | The HTML document to visualize statistics. |
 | [`log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/log.py) | The python file containing the script to log an entry in the history database. |
@@ -33,7 +34,7 @@ $ git clone https://github.com/gwendalminguy/tool-echoes.git
 
 **2. Setting an automation**
 
-To let Echoes log an entry for each song listened in the history database, an automation must be set. This can be achieved by launching the `automation` bash script using this command:
+To let Echoes log an entry for each song listened in the history database, an automation must be set. This can be achieved by launching the `automation` bash script, and must be done at the root of the Echoes directory, using this command:
 
 ```
 $ ./automation
@@ -56,10 +57,14 @@ This will invoke a text editor, in which the following line must be written (bot
 The statistics can be updated using the following command:
 
 ```
-$ ./statistics.py -y <year>
+$ ./statistics.py [-y <year>]
 ```
 
-This will export the statistics for the chosen year (or for the current year if not specified) as a json file in the `archives/`directory, and print those statistics to the terminal.
+This will export the statistics for the current year as a json file in the `archives/`directory, and print those statistics to the terminal. The `index.html` file can then be opened in any web browser to view the statistics.
+
+### Year:
+
+If desired, the script can be launched to export statistics for any previous year (as long as the history database contains matching entries). The desired year can then be chosen by calling it as a command-line argument with **-y** or **--year**, followed by the year itself.
 
 ### Limitations:
 
@@ -67,4 +72,3 @@ At this time, Echoes is restricted to some limitations, which are the following:
 
 - only OS supported is macOS
 - only player supported is Apple Music
-- repeated listens of the same song in a row only counted once
