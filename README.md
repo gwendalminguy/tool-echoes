@@ -14,8 +14,10 @@ The project contains several files and directories, which are the following:
 | :---- | :---------- |
 | [`analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/analyze.py) | The module containing functions to extract statistics from the history database. |
 | [`gestion.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/gestion.py) | The module containing functions to manage the history database. |
+| [`index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/index.html) | The HTML document to visualize statistics. |
 | [`log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/log.py) | The python file containing the script to log an entry in the history database. |
 | [`statistics.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/statistics.py) | The python file containing the script to generate statistics from the history database. |
+| [`style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/style.css) | The CSS document defining the style. |
 
 ## ⚙️ Installation
 
@@ -43,7 +45,7 @@ This will invoke a text editor, in which the following line must be written:
 * * * * * <path/to/python3> <path/to/tool-echoes/log.py>
 ```
 
-...
+The paths must be changed to match the locations...
 
 ## 🖥️ Usage
 
