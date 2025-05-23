@@ -52,5 +52,7 @@ The paths must be changed to match the locations...
 The statistics can be updated using the following command:
 
 ```
-$ ./statistics.py
+$ ./statistics.py -y <year>
 ```
+
+This will export the statistics for the chosen year (or for the current year if not specified), and print those statistics to the terminal.
