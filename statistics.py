@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 import json
 from datetime import datetime
 from analyze import top_titles, top_artists, top_genres, total_unique_titles, total_unique_artists, total_unique_genres, total_duration
@@ -47,7 +48,9 @@ def export_statistics(titles, artists, genres, count):
             "length": int(int(genres[i]['length']) / 60)
         }
 
-    with open(f"{year}.json", "w", encoding="utf-8") as file:
+    if not os.path.exists("archives/"):
+        os.mkdir("archives")
+    with open(f"archives/{year}.json", "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=4)
 
 
