@@ -55,4 +55,12 @@ The statistics can be updated using the following command:
 $ ./statistics.py -y <year>
 ```
 
-This will export the statistics for the chosen year (or for the current year if not specified), and print those statistics to the terminal.
+This will export the statistics for the chosen year (or for the current year if not specified) as a json file in the `archives/`directory, and print those statistics to the terminal.
+
+### Limitations:
+
+At this time, Echoes is restricted to some limitations, which are the following:
+
+- only OS supported is macOS
+- only player supported is Apple Music
+- repeated listens of the same song in a row only counted once
