@@ -61,7 +61,6 @@ def export_statistics(titles, artists, genres, count, year):
     base = os.path.dirname(os.path.realpath(__file__))
     path = os.path.join(base, "..", "data", "exports")
     os.makedirs(path, exist_ok=True)
-    print(path)
 
     with open(f"{path}/{year}.json", "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=4)

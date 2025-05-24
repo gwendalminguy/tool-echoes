@@ -3,6 +3,10 @@ from gestion import initialize_history, delete_history, get_listen, check_listen
 
 
 def main():
+    base = os.path.dirname(os.path.realpath(__file__))
+    path = os.path.join(base, "..", "data", "exports")
+    os.makedirs(path, exist_ok=True)
+
     song = get_listen()
     if song is not None:
         initialize_history()
