@@ -55,10 +55,13 @@ def export_statistics(titles, artists, genres, count, year):
             "length": int(int(genres[i]['length']) / 60)
         }
 
-    if not os.path.exists("archives/"):
-        os.mkdir("archives")
+    if not os.path.exists("../data/"):
+        os.mkdir("../data")
 
-    with open(f"archives/{year}.json", "w", encoding="utf-8") as file:
+    if not os.path.exists("../data/exports/"):
+        os.mkdir("../data/exports/")
+
+    with open(f"../data/exports/{year}.json", "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=4)
 
 

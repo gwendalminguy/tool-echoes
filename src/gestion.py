@@ -6,7 +6,7 @@ from datetime import datetime
 gestion.py
 Module containing functions to manage the history database.
 """
-DB_PATH = os.path.dirname(os.path.realpath(__file__)) + "/history.db"
+DB_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../data/history.db"
 
 
 def initialize_history():
