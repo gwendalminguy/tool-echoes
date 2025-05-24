@@ -37,12 +37,15 @@ def export_statistics(titles, artists, genres, count, year):
             "total_artists": count["total_artists"],
             "total_genres": count["total_genres"],
             "total_duration": int(int(count["total_duration"]) / 60)
-        }
+        },
+        "titles": {},
+        "artists": {},
+        "genres": {}
     }
 
     for i in range(5):
         try:
-            result["title_" + str(i + 1)] = {
+            result["titles"]["title_" + str(i + 1)] = {
                 "title": titles[i]["title"],
                 "artist": titles[i]["artist"],
                 "times": titles[i]["times"]
@@ -50,14 +53,14 @@ def export_statistics(titles, artists, genres, count, year):
         except IndexError:
             pass
         try:
-            result["artist_" + str(i + 1)] = {
+            result["artists"]["artist_" + str(i + 1)] = {
                 "artist": artists[i]["artist"],
                 "length": int(int(artists[i]['length']) / 60)
             }
         except IndexError:
             pass
         try:
-            result["genre_" + str(i + 1)] = {
+            result["genres"]["genre_" + str(i + 1)] = {
                 "genre": genres[i]["genre"],
                 "length": int(int(genres[i]['length']) / 60)
             }
