@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 from gestion import initialize_history, delete_history, get_listen, check_listen, log_listen
 
 

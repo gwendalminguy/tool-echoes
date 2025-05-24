@@ -47,16 +47,22 @@ def export_statistics(titles, artists, genres, count, year):
                 "artist": titles[i]["artist"],
                 "times": titles[i]["times"]
             }
+        except IndexError:
+            pass
+        try:
             result["artist_" + str(i + 1)] = {
                 "artist": artists[i]["artist"],
                 "length": int(int(artists[i]['length']) / 60)
             }
+        except IndexError:
+            pass
+        try:
             result["genre_" + str(i + 1)] = {
                 "genre": genres[i]["genre"],
                 "length": int(int(genres[i]['length']) / 60)
             }
         except IndexError:
-            break
+            pass
 
     base = os.path.dirname(os.path.realpath(__file__))
     path = os.path.join(base, "..", "data", "exports")
