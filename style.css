@@ -1,12 +1,16 @@
 body{
-	background-color: black;
+	background-color: grey;
+	font-family: "San Francicsco", sans-serif;;
+}
+
+h1 {
+	text-align: center;
 }
 
 .flex-container-years {
 	background-color: grey;
 	display: flex;
 	height: 100px;
-	gap: 15px;
 	justify-content: center;
 	align-items: center;
 }
@@ -23,8 +27,8 @@ body{
 .flex-container-cards {
 	background-color: grey;
 	display: flex;
-	height: 525px;
-	gap: 15px;
+	height: 600px;
+	gap: 50px;
 	justify-content: center;
 	align-items: center;
 }
@@ -32,9 +36,9 @@ body{
 .card {
 	background-color: lightgray;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	height: 450px;
-	width: 300px;
-	border-radius: 15px;
+	height: 500px;
+	width: 350px;
+	border-radius: 20px;
 	text-align: center;
 }
 
