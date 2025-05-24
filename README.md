@@ -50,11 +50,7 @@ This will allow the execution on a regular schedule of the `log.py` script. The 
 $ crontab -e
 ```
 
-This will invoke a text editor, in which the following line must be written (both paths must be changed to match the locations of python3 and the `log.py` file from the cloned directory):
-
-```
-* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>
-```
+This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `log.py` file from the cloned directory): `* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
 
 ## 🖥️ Usage
 
