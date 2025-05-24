@@ -4,7 +4,7 @@ Echoes is a simple tool logging a history of music listened locally, and generat
 
 ## 📋 Description
 
-Echoes logs an entry in a history database for every song listened locally through a player. When launched, the `statistics.py` script exports statistics for the current year, including a top five of titles, a top five of artists, a top five of genres, and total count of titles, artists, genres and duration. Those statistics, saved in json format in the `data/exports/` directory, are then used to generate a nice visualization.
+Echoes logs an entry in a history database for every song listened locally through a player. When launched, the `statistics.py` script exports statistics for the current year, including a top five of titles, a top five of artists, a top five of genres, and total count of titles, artists, genres and duration. Those statistics, saved in json format in the `data/exports/` directory (automatically created if not existing), are then used to generate a nice visualization.
 
 ## 📂 Project Structure
 
@@ -19,6 +19,7 @@ The project contains several files and directories, which are the following:
 | [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
 | [`src/statistics.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/statistics.py) | The python file containing the script to generate statistics from the history database. |
 | [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML document to visualize statistics. |
+| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The javascript file... |
 | [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS document defining the style. |
 | [`automation.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/automation.sh) | The bash script setting an automation to run `log.py` on a regular schedule. |
 
