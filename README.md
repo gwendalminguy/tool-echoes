@@ -19,7 +19,7 @@ The project contains several files and directories, which are the following:
 | [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
 | [`src/statistics.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/statistics.py) | The python file containing the script to generate statistics from the history database. |
 | [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML document to visualize statistics. |
-| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The javascript file... |
+| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The javascript file defining the behaviour. |
 | [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS document defining the style. |
 | [`automation.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/automation.sh) | The bash script setting an automation to run `log.py` on a regular schedule. |
 
@@ -50,7 +50,9 @@ This will allow the execution on a regular schedule of the `log.py` script. The 
 $ crontab -e
 ```
 
-This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `log.py` file from the cloned directory): `* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
+This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `src/log.py` file):
+
+`* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
 
 ## 🖥️ Usage
 
