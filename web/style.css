@@ -19,7 +19,7 @@ h1 {
 	background-color: lightgrey;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	height: 50px;
-	width: 200px;
+	width: 150px;
 	border-radius: 25px;
 	text-align: center;
 }
@@ -27,7 +27,7 @@ h1 {
 .flex-container-cards {
 	background-color: grey;
 	display: flex;
-	height: 600px;
+	height: 650px;
 	gap: 50px;
 	justify-content: center;
 	align-items: center;
@@ -35,9 +35,11 @@ h1 {
 
 .card {
 	background-color: lightgray;
+	border-color: green;
+	font-size: 35px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	height: 500px;
-	width: 350px;
+	height: 600px;
+	width: 400px;
 	border-radius: 20px;
 	text-align: center;
 }
