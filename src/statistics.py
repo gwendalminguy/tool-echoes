@@ -58,13 +58,12 @@ def export_statistics(titles, artists, genres, count, year):
         except IndexError:
             break
 
-    if not os.path.exists("../data/"):
-        os.mkdir("../data")
+    base = os.path.dirname(os.path.realpath(__file__))
+    path = os.path.join(base, "..", "data", "exports")
+    os.makedirs(path, exist_ok=True)
+    print(path)
 
-    if not os.path.exists("../data/exports/"):
-        os.mkdir("../data/exports/")
-
-    with open(f"../data/exports/{year}.json", "w", encoding="utf-8") as file:
+    with open(f"{path}/{year}.json", "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=4)
 
 
