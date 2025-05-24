@@ -41,19 +41,22 @@ def export_statistics(titles, artists, genres, count, year):
     }
 
     for i in range(5):
-        result["title_" + str(i + 1)] = {
-            "title": titles[i]["title"],
-            "artist": titles[i]["artist"],
-            "times": titles[i]["times"]
-        }
-        result["artist_" + str(i + 1)] = {
-            "artist": artists[i]["artist"],
-            "length": int(int(artists[i]['length']) / 60)
-        }
-        result["genre_" + str(i + 1)] = {
-            "genre": genres[i]["genre"],
-            "length": int(int(genres[i]['length']) / 60)
-        }
+        try:
+            result["title_" + str(i + 1)] = {
+                "title": titles[i]["title"],
+                "artist": titles[i]["artist"],
+                "times": titles[i]["times"]
+            }
+            result["artist_" + str(i + 1)] = {
+                "artist": artists[i]["artist"],
+                "length": int(int(artists[i]['length']) / 60)
+            }
+            result["genre_" + str(i + 1)] = {
+                "genre": genres[i]["genre"],
+                "length": int(int(genres[i]['length']) / 60)
+            }
+        except IndexError:
+            break
 
     if not os.path.exists("../data/"):
         os.mkdir("../data")
