@@ -1,3 +1,4 @@
+import sys
 import sqlite3
 from datetime import datetime
 """
@@ -27,6 +28,8 @@ def top_titles(year):
     items = cursor.fetchall()
     connection.close()
 
+    if len(items) == 0:
+        sys.exit(f"{year} Is Empty")
     return items
 
 
@@ -50,6 +53,8 @@ def top_artists(year):
     items = cursor.fetchall()
     connection.close()
 
+    if len(items) == 0:
+        sys.exit(f"{year} Is Empty")
     return items
 
 
@@ -73,6 +78,8 @@ def top_genres(year):
     items = cursor.fetchall()
     connection.close()
 
+    if len(items) == 0:
+        sys.exit(f"{year} Is Empty")
     return items
 
 
@@ -96,6 +103,8 @@ def total_unique_titles(year):
     count = cursor.fetchone()[0]
     connection.close()
 
+    if count == 0:
+        sys.exit(f"{year} Is Empty")
     return count
 
 
@@ -116,6 +125,8 @@ def total_unique_artists(year):
     count = cursor.fetchone()[0]
     connection.close()
 
+    if count == 0:
+        sys.exit(f"{year} Is Empty")
     return count
 
 def total_unique_genres(year):
@@ -135,6 +146,8 @@ def total_unique_genres(year):
     count = cursor.fetchone()[0]
     connection.close()
 
+    if count == 0:
+        sys.exit(f"{year} Is Empty")
     return count
 
 
@@ -155,4 +168,6 @@ def total_duration(year):
     duration = cursor.fetchone()[0]
     connection.close()
 
+    if duration == 0:
+        sys.exit(f"{year} Is Empty")
     return duration
