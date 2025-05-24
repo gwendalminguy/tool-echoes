@@ -4,7 +4,7 @@ Echoes is a simple tool logging a history of music listened locally, and generat
 
 ## 📋 Description
 
-Echoes logs an entry in a history database for every song listened locally through a player. When launched, the `statistics.py` script exports statistics for the current year, including a top five of titles, a top five of artists, a top five of genres, and total count of titles, artists, genres and duration. Those statistics, saved in json format in the `data/exports/` directory, are then used for visualization.
+Echoes logs an entry in a history database for every song listened locally through a player. When launched, the `statistics.py` script exports statistics for the current year, including a top five of titles, a top five of artists, a top five of genres, and total count of titles, artists, genres and duration. Those statistics, saved in json format in the `data/exports/` directory, are then used to generate a nice visualization.
 
 ## 📂 Project Structure
 
@@ -12,7 +12,8 @@ The project contains several files and directories, which are the following:
 
 | Files | Description |
 | :---- | :---------- |
-| [`data/history.db`](https://github.com/gwendalminguy/tool-echoes/blob/main/data) | ... |
+| `data/history.db` | The SQLITE history database. |
+| `data/exports/*.json` | The JSON files containing statistics for each year. |
 | [`src/analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/analyze.py) | The module containing functions to extract statistics from the history database. |
 | [`src/gestion.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/gestion.py) | The module containing functions to manage the history database. |
 | [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
