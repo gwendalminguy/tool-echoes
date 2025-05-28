@@ -3,28 +3,33 @@
 <head>
 	<title>Echoes</title>
 	<link rel="stylesheet" href="./style.css">
-	<script src="script.js" defer></script>
+	<script src="script.js"></script>
 </head>
 <body>
 	<h1>Echoes</h1>
 	<div class="flex-container-years">
+		<button class="button" onclick="prevYear()">
+			<div class="arrow-left"></div>
+		</button>
 		<div class="year">
-			<p>2025</p>
+			<p id="year"></p>
 		</div>
+		<button class="button" onclick="nextYear()">
+			<div class="arrow-right"></div>
+		</button>
 	</div>
 	<div class="flex-container-cards">
-		<div class="circle">
+		<button class="button" onclick="prevCard()">
 			<div class="arrow-left"></div>
-		</div>
+		</button>
 		<div class="card">
 			<p>
 				TOP TITLES
 			</p>
 		</div>
-		<div class="circle">
+		<button class="button" onclick="nextCard()">
 			<div class="arrow-right"></div>
-		</div>
+		</button>
 	</div>
 </body>
-
 </html>

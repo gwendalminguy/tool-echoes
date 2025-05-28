@@ -11,6 +11,7 @@ h1 {
 	background-color: grey;
 	display: flex;
 	height: 100px;
+	gap: 25px;
 	justify-content: center;
 	align-items: center;
 }
@@ -44,10 +45,9 @@ h1 {
 	text-align: center;
 }
 
-.circle {
+.button {
 	background-color: lightgray;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	display: flex;
+	box-shadow: 0 4px 8px 0 rgba(26, 21, 21, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	height: 50px;
 	width: 50px;
 	border-radius: 50%;
