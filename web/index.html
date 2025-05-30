@@ -1,35 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Echoes</title>
 	<link rel="stylesheet" href="./style.css">
-	<script src="script.js"></script>
+	<script src="./script.js"></script>
 </head>
-<body>
+
+<body onload="load()">
 	<h1>Echoes</h1>
-	<div class="flex-container-years">
-		<button class="button" onclick="prevYear()">
-			<div class="arrow-left"></div>
-		</button>
-		<div class="year">
-			<p id="year"></p>
-		</div>
-		<button class="button" onclick="nextYear()">
-			<div class="arrow-right"></div>
-		</button>
+	<div class="container-years">
+		<button class="button" onclick="prevYear()"></button>
+		<div class="year"><p id="year"></p></div>
+		<button class="button" onclick="nextYear()"></button>
 	</div>
-	<div class="flex-container-cards">
-		<button class="button" onclick="prevCard()">
-			<div class="arrow-left"></div>
-		</button>
+
+	<div class="container-cards">
+		<button class="button" onclick="prevCard()"></button>
 		<div class="card">
-			<p>
-				TOP TITLES
-			</p>
+			<article>
+				<h2>Top Titles</h2>
+				<ol>
+					<li id="title-1"></li>
+					<li id="title-2"></li>
+					<li id="title-3"></li>
+					<li id="title-4"></li>
+					<li id="title-5"></li>
+				</ol>
+			</article>
+			<article>
+				<h2>Top Artists</h2>
+				<ol>
+					<li id="artist-1"></li>
+					<li id="artist-2"></li>
+					<li id="artist-3"></li>
+					<li id="artist-4"></li>
+					<li id="artist-5"></li>
+				</ol>
+			</article>
 		</div>
-		<button class="button" onclick="nextCard()">
-			<div class="arrow-right"></div>
-		</button>
+		<button class="button" onclick="nextCard()"></button>
 	</div>
 </body>
+
 </html>

@@ -1,14 +1,19 @@
 body{
-	background-color: grey;
-	font-family: "San Francicsco", sans-serif;;
+	background-color: #fefefe;
+	font-family: "San Francicsco", sans-serif;
 }
 
 h1 {
 	text-align: center;
+	font-size: 30px;
 }
 
-.flex-container-years {
-	background-color: grey;
+h2 {
+	text-align: left;
+	font-size: 25px;
+}
+
+.container-years {
 	display: flex;
 	height: 100px;
 	gap: 25px;
@@ -18,17 +23,16 @@ h1 {
 
 .year {
 	background-color: lightgrey;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 20px 0 rgba(0, 0, 0, 0.15);
 	height: 50px;
 	width: 150px;
 	border-radius: 25px;
 	text-align: center;
 }
 
-.flex-container-cards {
-	background-color: grey;
+.container-cards {
 	display: flex;
-	height: 650px;
+	height: 700px;
 	gap: 50px;
 	justify-content: center;
 	align-items: center;
@@ -37,36 +41,27 @@ h1 {
 .card {
 	background-color: lightgray;
 	border-color: none;
-	font-size: 35px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	font-size: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 20px 0 rgba(0, 0, 0, 0.15);
 	height: 600px;
 	width: 400px;
 	border-radius: 20px;
-	text-align: center;
+	text-align: left;
 }
 
 .button {
 	background-color: lightgray;
-	box-shadow: 0 4px 8px 0 rgba(26, 21, 21, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 20px 0 rgba(0, 0, 0, 0.15);
 	height: 50px;
 	width: 50px;
+	border: none;
 	border-radius: 50%;
 	justify-content: center;
 	align-items: center;
+	transition-duration: 0.5s;
+	cursor: pointer;
 }
 
-.arrow-left {
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-right:15px solid grey;
-}
-
-.arrow-right {
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  border-left: 15px solid grey;
+.button:hover {
+	background-color: darkgray;
 }
