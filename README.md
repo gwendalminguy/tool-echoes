@@ -62,7 +62,11 @@ The statistics can be updated using the following command:
 $ ./src/statistics.py [-y <year>]
 ```
 
-This will export the statistics for the current year as a json file in the `data/exports/`directory, and print those statistics to the terminal. The `index.html` file can then be opened in any web browser to view the statistics.
+This will export the statistics for the current year as a json file in the `data/exports/`directory, and print those statistics to the terminal. In order to view the statistics, the following command can be used at the root of the Echoes directory:
+
+```
+$ python3 -m http.server -d web
+```
 
 ### Year:
 
@@ -74,3 +78,6 @@ At this time, Echoes is restricted to some limitations, which are the following:
 
 - only OS supported is macOS
 - only player supported is Apple Music
+- automation must be set outside of any container
+- automation seem to be removed after an OS update
+- songs that are less than one minute long might not be logged in the history
