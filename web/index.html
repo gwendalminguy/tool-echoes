@@ -18,7 +18,7 @@
 	<div class="container-cards">
 		<button class="button" onclick="prevCard()"></button>
 		<div class="card">
-			<article>
+			<article class="card-section">
 				<h2>Top Titles</h2>
 				<ol>
 					<li id="title-1"></li>
@@ -28,7 +28,7 @@
 					<li id="title-5"></li>
 				</ol>
 			</article>
-			<article>
+			<article class="card-section">
 				<h2>Top Artists</h2>
 				<ol>
 					<li id="artist-1"></li>
@@ -38,9 +38,26 @@
 					<li id="artist-5"></li>
 				</ol>
 			</article>
+			<article class="card-section">
+				<h2>Top Genres</h2>
+				<ol>
+					<li id="genre-1"></li>
+					<li id="genre-2"></li>
+					<li id="genre-3"></li>
+					<li id="genre-4"></li>
+					<li id="genre-5"></li>
+				</ol>
+			</article>
 		</div>
 		<button class="button" onclick="nextCard()"></button>
 	</div>
+
+	<script>
+		let currentIndex = 0;
+		const sections = document.querySelectorAll('.card-section');
+		showCard(currentIndex);
+	</script>
+
 </body>
 
 </html>

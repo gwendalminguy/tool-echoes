@@ -49,6 +49,14 @@ h2 {
 	text-align: left;
 }
 
+.card-section {
+	display: none;
+}
+
+.card-section.active {
+	display: block;
+}
+
 .button {
 	background-color: lightgray;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 20px 0 rgba(0, 0, 0, 0.15);

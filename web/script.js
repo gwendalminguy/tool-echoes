@@ -15,6 +15,11 @@ function load() {
 				document.getElementById(`artist-${i}`).textContent = `${value.artist} (${value.length} minutes)`;
 				i++;
 			}
+			i = 1;
+			for (const [key, value] of Object.entries(data.genres)) {
+				document.getElementById(`genre-${i}`).textContent = `${value.genre} (${value.length} minutes)`;
+				i++;
+			}
   		});
 }
 
@@ -30,23 +35,18 @@ function nextYear() {
 	document.getElementById('year').innerHTML = year;
 }
 
-function prevCard() {
-	let json = require(`../data/exports/${year}.json`);
-	card = json["count"];
-	document.getElementById('card').innerHTML = card;
-}
-
 function nextCard() {
-	let json = require(`../data/exports/${year}.json`);
-	card = json.count.top_titles;
-	document.getElementById('card').innerHTML = card;
+	currentIndex = (currentIndex + 1) % sections.length;
+	showCard(currentIndex);
 }
 
-/*
-var count = json["count"]
-var titles = json["titles"]
-var artists = json["artists"]
-var genres = json["genres"]
+function prevCard() {
+	currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+	showCard(currentIndex);
+}
 
-console.log(count, titles, artists, genres);
-*/
+function showCard(index) {
+	sections.forEach((section, i) => {
+		section.classList.toggle('active', i === index);
+	});
+}
