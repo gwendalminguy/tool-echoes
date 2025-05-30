@@ -47,19 +47,17 @@ $ ./automation.sh
 This will allow the execution on a regular schedule of the `log.py` script. The user might be prompted by the system to authorize the automation, to allow it to execute the script.
 
 <details>
-	<summary>
-		Manual Procedure
-	</summary>
+	<summary>Manual Procedure</summary>
 
-	If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
+If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
 
-	```
-	$ crontab -e
-	```
+```
+$ crontab -e
+```
 
-	This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `src/log.py` file):
+This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `src/log.py` file):
 
-	`* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
+`* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
 </details>
 
 ## 🖥️ Usage
