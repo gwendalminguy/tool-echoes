@@ -34,7 +34,7 @@ h2 {
 
 .container-cards {
 	display: flex;
-	height: 700px;
+	height: 650px;
 	gap: 50px;
 	justify-content: center;
 	align-items: center;
@@ -43,8 +43,7 @@ h2 {
 .card {
 	width: 325px;
 	height: 450px;
-	margin: auto;
-	padding: 24px;
+	padding: 25px;
 	background: #fdfdfd;
 	border-radius: 20px;
 	box-shadow:
@@ -79,7 +78,7 @@ h2 {
 	border-radius: 12px;
 	font-weight: 500;
 	color: #333;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 	transition: background 0.2s ease;
 }
 
