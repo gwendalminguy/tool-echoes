@@ -44,15 +44,23 @@ $ chmod u+x automation.sh
 $ ./automation.sh
 ```
 
-This will allow the execution on a regular schedule of the `log.py` script. The user might be prompted by the system to authorize the automation, to allow it to execute the script. If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
+This will allow the execution on a regular schedule of the `log.py` script. The user might be prompted by the system to authorize the automation, to allow it to execute the script.
 
-```
-$ crontab -e
-```
+<details>
+	<summary>
+		Manual Procedure
+	</summary>
 
-This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `src/log.py` file):
+	If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
 
-`* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
+	```
+	$ crontab -e
+	```
+
+	This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `src/log.py` file):
+
+	`* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
+</details>
 
 ## 🖥️ Usage
 
@@ -65,7 +73,7 @@ $ ./src/statistics.py [-y <year>]
 This will export the statistics for the current year as a json file in the `data/exports/`directory, and print those statistics to the terminal. In order to view the statistics, the following command can be used at the root of the Echoes directory:
 
 ```
-$ python3 -m http.server -d web
+$ python3 -m http.server
 ```
 
 ### Year:
