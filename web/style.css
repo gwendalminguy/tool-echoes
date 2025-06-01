@@ -1,5 +1,5 @@
 body{
-	background-color: #fafafa;
+	background-color: #f2f2f2;
 	font-family: "San Francicsco", sans-serif;
 }
 
@@ -36,8 +36,9 @@ h3 {
 
 .year {
 	background-color: #fdfdfd;
+	padding-bottom: 0.25rem;
 	height: 50px;
-	width: 100px;
+	width: 75px;
 	text-align: center;
 }
 
@@ -109,7 +110,7 @@ h3 {
 
 .button {
 	color: #ccc;
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: bold;
 	font-family: sans-serif;
 	background-color: #fdfdfd;
@@ -125,11 +126,13 @@ h3 {
 .button-year-left {
 	border-top-left-radius: 50%;
 	border-bottom-left-radius: 50%;
+	width: 75px;
 }
 
 .button-year-right {
 	border-top-right-radius: 50%;
 	border-bottom-right-radius: 50%;
+	width: 75px;
 }
 
 .button-card {
