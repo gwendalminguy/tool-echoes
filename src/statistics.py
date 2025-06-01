@@ -26,7 +26,7 @@ def main():
     }
 
     export_statistics(titles, artists, genres, count, year)
-    show_statistics(titles, artists, genres, count)
+    #show_statistics(titles, artists, genres, count)
 
 
 def export_statistics(titles, artists, genres, count, year):
