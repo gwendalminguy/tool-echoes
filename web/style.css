@@ -13,22 +13,31 @@ h2 {
 	font-size: 25px;
 }
 
+h3 {
+	text-align: center;
+	font-size: 18px;
+}
+
 .container-years {
 	display: flex;
-	height: 100px;
-	gap: 25px;
+	height: 50px;
+	width: 150px;
+	margin: 0 auto;
 	justify-content: center;
 	align-items: center;
+	gap: 0;
+	background-color: #fdfdfd;
+	border-radius: 50px;
+	box-shadow:
+    	0 10px 15px 0 rgba(0, 0, 0, 0.1),
+    	0 8px 10px 0 rgba(0, 0, 0, 0.1);
+	overflow: hidden;
 }
 
 .year {
 	background-color: #fdfdfd;
-	box-shadow: 
-		0 10px 15px 0 rgba(0, 0, 0, 0.1),
-		0 8px 10px 0 rgba(0, 0, 0, 0.1);
 	height: 50px;
-	width: 150px;
-	border-radius: 25px;
+	width: 100px;
 	text-align: center;
 }
 
@@ -99,20 +108,41 @@ h2 {
 }
 
 .button {
+	color: #ccc;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: sans-serif;
 	background-color: #fdfdfd;
-	box-shadow:
-		0 10px 15px 0 rgba(0, 0, 0, 0.1),
-		0 8px 10px 0 rgba(0, 0, 0, 0.1);
 	height: 50px;
 	width: 50px;
 	border: none;
-	border-radius: 50%;
 	justify-content: center;
 	align-items: center;
 	transition-duration: 0.5s;
 	cursor: pointer;
 }
 
+.button-year-left {
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+}
+
+.button-year-right {
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+}
+
+.button-card {
+	border-radius: 50%;
+	box-shadow:
+		0 10px 15px 0 rgba(0, 0, 0, 0.1),
+		0 8px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.button-card:hover {
+	transform: scale(1.1);
+}
+
 .button:hover {
-	transform: scale(1.15);
+	color: #666;
 }

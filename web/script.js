@@ -1,6 +1,6 @@
 let year = new Date().getFullYear();
 
-function load() {
+function loadStatistics() {
 	document.getElementById('year').innerHTML = year;
 	fetch(`../data/exports/${year}.json`)
 		.then(response => response.json())
@@ -25,14 +25,16 @@ function load() {
 
 function prevYear() {
 	year--;
-	load();
+	loadStatistics();
 	document.getElementById('year').innerHTML = year;
 }
 
 function nextYear() {
-	year++;
-	load()
-	document.getElementById('year').innerHTML = year;
+	if (year < new Date().getFullYear()) {
+		year++;
+		loadStatistics()
+		document.getElementById('year').innerHTML = year;
+	}
 }
 
 function nextCard() {
