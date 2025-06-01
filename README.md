@@ -47,8 +47,9 @@ $ ./automation.sh
 This will allow the execution on a regular schedule of `log.py` and `statistics.py` scripts. The statistics for the current year will regularly be exported as a json file in the `data/exports/`directory. The user might be prompted by the system to authorize the automation, to allow it to execute the script.
 
 <details>
-	<summary><b>Manual Procedure</b></summary>
+	<summary><b>Manual Setting Procedure</b></summary>
 
+<br>
 If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
 
 ```
@@ -58,6 +59,7 @@ $ crontab -e
 This will invoke a text editor, in which the following lines must be written (paths must be changed to the locations of python3, and of `src/log.py` and `src/statistics.py` files):
 
 `* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
+<br>
 `* * * * 0 <path/to/python3> <path/to/tool-echoes/src/statistics.py>`
 </details>
 
@@ -72,6 +74,7 @@ $ python3 -m http.server
 <details>
 	<summary><b>Manual Statistics Update</b></summary>
 
+<br>
 Although the statistics are updated automatically every hour, this can be achieved manually using the following command:
 
 ```
