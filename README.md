@@ -48,8 +48,8 @@ This will allow the execution on a regular schedule of `log.py` and `statistics.
 
 <details>
 	<summary><b>Manual Setting Procedure</b></summary>
-
 <br>
+
 If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
 
 ```
@@ -58,9 +58,11 @@ $ crontab -e
 
 This will invoke a text editor, in which the following lines must be written (paths must be changed to the locations of python3, and of `src/log.py` and `src/statistics.py` files):
 
-`* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
-<br>
-`* * * * 0 <path/to/python3> <path/to/tool-echoes/src/statistics.py>`
+```
+* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>
+* * * * 0 <path/to/python3> <path/to/tool-echoes/src/statistics.py>
+```
+
 </details>
 
 ## 🖥️ Usage
