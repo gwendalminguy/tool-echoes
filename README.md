@@ -12,16 +12,16 @@ The project contains several files and directories, which are the following:
 
 | Files | Description |
 | :---- | :---------- |
-| `data/history.db` | The SQLITE history database. |
+| `data/history.db` | The history database file. |
 | `data/exports/*.json` | The JSON files containing statistics for each year. |
 | [`src/analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/analyze.py) | The module containing functions to extract statistics from the history database. |
 | [`src/gestion.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/gestion.py) | The module containing functions to manage the history database. |
 | [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
-| [`src/statistics.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/statistics.py) | The python file containing the script to generate statistics from the history database. |
-| [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML document to visualize statistics. |
-| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The javascript file defining the behaviour of the visualization. |
-| [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS document defining the style of the visualization. |
-| [`automation.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/automation.sh) | The bash script setting an automation to log entries and export statistics on a regular schedule. |
+| [`src/statistics.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/statistics.py) | The python file containing the script to export statistics. |
+| [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML file to visualize statistics. |
+| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The JavaScript file defining the behaviour of the visualization. |
+| [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS file defining the style of the visualization. |
+| [`automation.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/automation.sh) | The bash script setting an automation to log entries and export statistics. |
 
 ## ⚙️ Installation
 
