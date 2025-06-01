@@ -44,10 +44,10 @@ $ chmod u+x automation.sh
 $ ./automation.sh
 ```
 
-This will allow the execution on a regular schedule of the `log.py` script. The user might be prompted by the system to authorize the automation, to allow it to execute the script.
+This will allow the execution on a regular schedule of `log.py` and `statistics.py` scripts. The statistics for the current year will regularly be exported as a json file in the `data/exports/`directory. The user might be prompted by the system to authorize the automation, to allow it to execute the script.
 
 <details>
-	<summary>Manual Procedure</summary>
+	<summary><b>Manual Procedure</b></summary>
 
 If desired, this can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
 
@@ -55,30 +55,35 @@ If desired, this can also be achieved manually, using the `Crontab` utility (pre
 $ crontab -e
 ```
 
-This will invoke a text editor, in which the following line must be written (paths must be changed to the locations of python3 and the `src/log.py` file):
+This will invoke a text editor, in which the following lines must be written (paths must be changed to the locations of python3, and of `src/log.py` and `src/statistics.py` files):
 
 `* * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>`
+`* * * * 0 <path/to/python3> <path/to/tool-echoes/src/statistics.py>`
 </details>
 
 ## 🖥️ Usage
 
-The statistics can be updated using the following command:
-
-```
-$ ./src/statistics.py [-y <year>]
-```
-
-This will export the statistics for the current year as a json file in the `data/exports/`directory, and print those statistics to the terminal. In order to view the statistics, the following command can be used at the root of the Echoes directory:
+In order to view the statistics, the following command can be used at the root of the Echoes directory:
 
 ```
 $ python3 -m http.server
 ```
 
+<details>
+	<summary><b>Manual Statistics Update</b></summary>
+
+Although the statistics are updated automatically every hour, this can be achieved manually using the following command:
+
+```
+$ ./src/statistics.py [-y <year>]
+```
+
 ### Year:
 
 If desired, the script can be launched to export statistics for any previous year (as long as the history database contains matching entries). The desired year can then be chosen by calling it as a command-line argument with **-y** or **--year**, followed by the year itself.
+</details>
 
-### Limitations:
+## 🚫 Limitations
 
 At this time, Echoes is restricted to some limitations, which are the following:
 
