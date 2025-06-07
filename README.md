@@ -22,7 +22,7 @@ The project contains several files and directories, which are the following:
 | [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML file to visualize statistics. |
 | [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The JavaScript file defining the behaviour of the visualization. |
 | [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS file defining the style of the visualization. |
-| [`automation.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/automation.sh) | The bash script setting an automation to log entries and export statistics. |
+| [`install.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/install.sh) | The bash script setting automations to log entries and export statistics. |
 
 ## ⚙️ Installation
 
@@ -38,15 +38,15 @@ $ git clone https://github.com/gwendalminguy/tool-echoes.git
 
 **2. Setting an automation**
 
-To let Echoes log an entry for each song listened in the history database, and export the statistics, an automation must be set. This can be achieved by launching the `automation.sh` bash script, and must be done at the root of the Echoes directory, using these commands:
+To let Echoes log an entry for each song listened in the history database, and export the statistics, an automation must be set. This can be achieved by launching the `install.sh` bash script, and must be done at the root of the Echoes directory, using these commands:
 
 ```
 $ cd tool-echoes/
-$ chmod u+x automation.sh
-$ ./automation.sh
+$ chmod u+x install.sh
+$ ./install.sh
 ```
 
-This will allow the execution on a regular schedule of `log.py` and `extract.py` scripts. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/`directory. The user might be prompted by the system to authorize the automation, to allow it to execute the scripts.
+This will allow the execution on a regular schedule of `log.py` and `extract.py` scripts. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/`directory. The user might be prompted by the system to authorize the automations, to allow scripts execution.
 
 <details>
 	<summary><b>Manual Setting Procedure</b></summary>
