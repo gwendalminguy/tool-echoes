@@ -40,6 +40,7 @@ $ git clone https://github.com/gwendalminguy/tool-echoes.git
 To let Echoes log an entry for each song listened in the history database, and export the statistics, an automation must be set. This can be achieved by launching the `automation.sh` bash script, and must be done at the root of the Echoes directory, using these commands:
 
 ```
+$ cd tool-echoes/
 $ chmod u+x automation.sh
 $ ./automation.sh
 ```
@@ -69,6 +70,12 @@ In order to view the statistics, the following command can be used at the root o
 
 ```
 $ python3 -m http.server
+```
+
+The following URL can then be copied into any web browser:
+
+```
+http://localhost:8000/web/
 ```
 
 <details>
