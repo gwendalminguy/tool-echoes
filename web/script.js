@@ -37,13 +37,13 @@ function nextYear() {
 	}
 }
 
-function nextCard() {
-	currentIndex = (currentIndex + 1) % sections.length;
+function prevCard() {
+	currentIndex = (currentIndex - 1 + sections.length) % sections.length;
 	showCard(currentIndex);
 }
 
-function prevCard() {
-	currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+function nextCard() {
+	currentIndex = (currentIndex + 1) % sections.length;
 	showCard(currentIndex);
 }
 
