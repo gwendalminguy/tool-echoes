@@ -16,8 +16,9 @@ The project contains several files and directories, which are the following:
 | `data/exports/*.json` | The JSON files containing statistics for each year. |
 | [`src/analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/analyze.py) | The module containing functions to extract statistics from the history database. |
 | [`src/gestion.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/gestion.py) | The module containing functions to manage the history database. |
+| [`src/serialization.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/serialization.py) | The module containing functions to serialize statistics in JSON format. |
 | [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
-| [`src/statistics.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/statistics.py) | The python file containing the script to export statistics. |
+| [`src/extract.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/extract.py) | The python file containing the script to extract statistics. |
 | [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML file to visualize statistics. |
 | [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The JavaScript file defining the behaviour of the visualization. |
 | [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS file defining the style of the visualization. |
@@ -45,7 +46,7 @@ $ chmod u+x automation.sh
 $ ./automation.sh
 ```
 
-This will allow the execution on a regular schedule of `log.py` and `statistics.py` scripts. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/`directory. The user might be prompted by the system to authorize the automation, to allow it to execute the scripts.
+This will allow the execution on a regular schedule of `log.py` and `extract.py` scripts. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/`directory. The user might be prompted by the system to authorize the automation, to allow it to execute the scripts.
 
 <details>
 	<summary><b>Manual Setting Procedure</b></summary>
@@ -56,11 +57,11 @@ If desired, this can also be achieved manually, using the `Crontab` utility (pre
 $ crontab -e
 ```
 
-This will invoke a text editor, in which the following lines must be written (paths must be changed to match the locations of python3, of `src/log.py` and of `src/statistics.py` files):
+This will invoke a text editor, in which the following lines must be written (paths must be changed to match the locations of python3, of `src/log.py` and of `src/extract.py` files):
 
 ```
 * * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>
-* * * * 0 <path/to/python3> <path/to/tool-echoes/src/statistics.py>
+* * * * 0 <path/to/python3> <path/to/tool-echoes/src/extract.py>
 ```
 </details>
 
@@ -84,12 +85,12 @@ http://localhost:8000/web/
 Although the statistics are updated automatically every hour, this can be achieved manually using the following command:
 
 ```
-$ ./src/statistics.py [-y <year>]
+$ ./src/extract.py [-y <year>]
 ```
 
 ### Year:
 
-If desired, the script can be launched to export statistics for any previous year (as long as the history database contains matching entries). The desired year can then be chosen by calling it as a command-line argument with **-y** or **--year**, followed by the year itself.
+If desired, the script can be launched to extract statistics for any previous year (as long as the history database contains matching entries). The desired year can then be chosen by calling it as a command-line argument with **-y** or **--year**, followed by the year itself.
 </details>
 
 ## 🚫 Limitations
