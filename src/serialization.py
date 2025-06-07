@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+serialization.py
 Module containing functions to serialize statistics from the history database.
 """
 import os

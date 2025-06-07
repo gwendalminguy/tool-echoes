@@ -22,7 +22,6 @@ def main():
     titles = top_titles(year)
     artists = top_artists(year)
     genres = top_genres(year)
-
     count = {
         "total_titles": total_unique_titles(year),
         "total_artists": total_unique_artists(year),
