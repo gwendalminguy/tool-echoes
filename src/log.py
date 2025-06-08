@@ -3,7 +3,7 @@
 Script to log an entry in the history database.
 """
 import os
-from gestion import initialize_history, delete_history, get_listen, check_listen, log_listen
+from management import initialize_history, delete_history, get_listen, check_listen, log_listen
 
 
 def main():
