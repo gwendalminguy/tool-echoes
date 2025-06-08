@@ -47,11 +47,12 @@ $ chmod u+x install.sh
 $ ./install.sh
 ```
 
-This will allow the execution on a regular schedule of `log.py` and `extract.py` scripts. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/`directory. The user might be prompted by the system to authorize the automations, to allow scripts execution.
+This will allow the execution on a regular schedule of `log.py` and `extract.py` scripts. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/` directory. The user might be prompted by the system to authorize the automations, to allow scripts execution.
 
 <details>
 	<summary><b>Manual Installation Procedure</b></summary>
 <br>
+
 If desired, this installation can also be achieved manually, using the `Crontab` utility (pre-installed on macOS), as follows:
 
 ```
@@ -65,9 +66,10 @@ This will invoke a text editor, in which the following lines must be written (pa
 * * * * 0 <path/to/python3> <path/to/tool-echoes/src/extract.py>
 ```
 
-Two other commands need to be run, in order to let Echoes work. The first one will create a symbolic link for the serialized data, and the second one will add to `run.py` the execution permission:
+Three other commands need to be run, in order to let Echoes work. The first one will create the `data/exports/` directory, the second one will create a symbolic link for the serialized data, and the third one will add to `run.py` the execution permission:
 
 ```
+$ mkdir -p data/exports
 $ ln -s ../data/exports web/exports
 $ chmod u+x run.py
 ```
@@ -81,11 +83,12 @@ In order to visualize the statistics, the `run.sh` bash script must be launched:
 $ ./run.sh
 ```
 
-This will open the default web browser and display several statistics for the current year. Navigation to the previous/next year or card is possible using the arrow buttons.
+This will open the default web browser and display several statistics for the current year. Navigation to the previous/next year or card is possible using the arrow buttons. Once done, the server needs to be shut down using Ctrl+C.
 
 <details>
 	<summary><b>Manual Running Procedure</b></summary>
 <br>
+
 If desired, this can also be achieved manually, using the following command at the root of the Echoes directory:
 
 ```
@@ -102,7 +105,8 @@ http://localhost:8000/
 <details>
 	<summary><b>Manual Statistics Update</b></summary>
 <br>
-Although the statistics are updated automatically every hour, this can be achieved manually using the following command:
+
+Although the statistics are updated automatically every hour, it be achieved manually using the following command:
 
 ```
 $ ./src/extract.py [-y <year>]
