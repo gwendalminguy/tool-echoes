@@ -15,10 +15,10 @@ The project contains several files and directories, which are the following:
 | `data/history.db` | The history database file. |
 | `data/exports/*.json` | The JSON files containing statistics for each year. |
 | [`src/analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/analyze.py) | The module containing functions to extract statistics from the history database. |
-| [`src/gestion.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/gestion.py) | The module containing functions to manage the history database. |
+| [`src/management.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/management.py) | The module containing functions to manage the history database. |
 | [`src/serialization.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/serialization.py) | The module containing functions to serialize statistics in JSON format. |
-| [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
 | [`src/extract.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/extract.py) | The python file containing the script to extract statistics. |
+| [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
 | [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML file to visualize statistics. |
 | [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The JavaScript file defining the behaviour of the visualization. |
 | [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS file defining the style of the visualization. |
