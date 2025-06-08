@@ -1,11 +1,13 @@
+"""
+management.py
+Module containing functions to manage the history database.
+"""
 import os
 import subprocess
 import sqlite3
 from datetime import datetime
-"""
-gestion.py
-Module containing functions to manage the history database.
-"""
+
+
 DB_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../data/history.db"
 
 
