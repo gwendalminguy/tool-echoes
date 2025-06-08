@@ -1,11 +1,13 @@
-import sys
-import os
-import sqlite3
-from datetime import datetime
 """
 analyze.py
 Module containing functions to analyze the history database.
 """
+import sys
+import os
+import sqlite3
+from datetime import datetime
+
+
 DB_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../data/history.db"
 
 
