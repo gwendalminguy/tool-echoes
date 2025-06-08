@@ -19,10 +19,11 @@ The project contains several files and directories, which are the following:
 | [`src/serialization.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/serialization.py) | The module containing functions to serialize statistics in JSON format. |
 | [`src/extract.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/extract.py) | The python file containing the script to extract statistics. |
 | [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
-| [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML file to visualize statistics. |
-| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The JavaScript file defining the behaviour of the visualization. |
-| [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS file defining the style of the visualization. |
+| [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML file defining the structure of the statistics visualization. |
+| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The JavaScript file defining the behaviour of the statistics visualization. |
+| [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS file defining the style of the statistics visualization. |
 | [`install.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/install.sh) | The bash script setting automations to log entries and export statistics. |
+| [`run.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/run.sh) | The bash script to visualize statistics. |
 
 ## ⚙️ Installation
 
@@ -67,18 +68,6 @@ This will invoke a text editor, in which the following lines must be written (pa
 
 ## 🖥️ Usage
 
-In order to view the statistics, the following command can be used at the root of the Echoes directory:
-
-```
-$ python3 -m http.server
-```
-
-The following URL can then be copied into any web browser:
-
-```
-http://localhost:8000/web/
-```
-
 <details>
 	<summary><b>Manual Statistics Update</b></summary>
 <br>
@@ -91,6 +80,28 @@ $ ./src/extract.py [-y <year>]
 ### Year:
 
 If desired, the script can be launched to extract statistics for any previous year (as long as the history database contains matching entries). The desired year can then be chosen by calling it as a command-line argument with **-y** or **--year**, followed by the year itself.
+</details>
+
+In order to view the statistics, the `run.sh` bash script can be launched:
+
+```
+$ ./run.sh
+```
+
+<details>
+	<summary><b>Manual Running Procedure</b></summary>
+<br>
+If desired, this can also be achieved manually, using the following command at the root of the Echoes directory:
+
+```
+$ python3 -m http.server --directory web
+```
+
+The following URL can then be copied into any web browser:
+
+```
+http://localhost:8000/
+```
 </details>
 
 ## 🚫 Limitations
