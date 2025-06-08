@@ -2,7 +2,7 @@ let year = new Date().getFullYear();
 
 function loadStatistics() {
 	document.getElementById('year').innerHTML = year;
-	fetch(`../data/exports/${year}.json`)
+	fetch(`exports/${year}.json`)
 		.then(response => response.json())
 		.then(data => {
 			let i = 1;
