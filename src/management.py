@@ -109,6 +109,6 @@ def log_listen(title, artist, album, year, genre, duration):
     cursor.execute("""
         INSERT INTO listen (title, artist, album, year, genre, duration, date)
         VALUES (?, ?, ?, ?, ?, ?, ?)
-    """, (title, artist, album, year, genre, duration, datetime.now()))
+    """, (title, artist, album, year, genre, duration, datetime.now().replace(microsecond=0)))
     connection.commit()
     connection.close()
