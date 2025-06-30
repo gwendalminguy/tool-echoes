@@ -9,6 +9,7 @@ import argparse
 from datetime import datetime
 from analyze import top_titles, top_artists, top_genres, total_unique_titles, total_unique_artists, total_unique_genres, total_duration
 from serialization import export_statistics, show_statistics
+from management import initialize_history
 
 
 def main():
@@ -18,6 +19,8 @@ def main():
     parser.add_argument("-y", "--year", default=current, type=str, help="year to process")
     args = parser.parse_args()
     year = (args.year).lower()
+
+    initialize_history()
 
     titles = top_titles(year)
     artists = top_artists(year)
