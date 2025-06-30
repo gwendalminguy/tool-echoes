@@ -32,7 +32,7 @@ def top_titles(year):
     connection.close()
 
     if len(items) == 0:
-        sys.exit(f"{year} Is Empty")
+        sys.exit(f"No Data ({year})")
     return items
 
 
@@ -57,7 +57,7 @@ def top_artists(year):
     connection.close()
 
     if len(items) == 0:
-        sys.exit(f"{year} Is Empty")
+        sys.exit(f"No Data ({year})")
     return items
 
 
@@ -82,7 +82,7 @@ def top_genres(year):
     connection.close()
 
     if len(items) == 0:
-        sys.exit(f"{year} Is Empty")
+        sys.exit(f"No Data ({year})")
     return items
 
 
@@ -107,7 +107,7 @@ def total_unique_titles(year):
     connection.close()
 
     if count == 0:
-        sys.exit(f"{year} Is Empty")
+        sys.exit(f"No Data ({year})")
     return count
 
 
@@ -129,7 +129,7 @@ def total_unique_artists(year):
     connection.close()
 
     if count == 0:
-        sys.exit(f"{year} Is Empty")
+        sys.exit(f"No Data ({year})")
     return count
 
 def total_unique_genres(year):
@@ -150,7 +150,7 @@ def total_unique_genres(year):
     connection.close()
 
     if count == 0:
-        sys.exit(f"{year} Is Empty")
+        sys.exit(f"No Data ({year})")
     return count
 
 
@@ -172,5 +172,5 @@ def total_duration(year):
     connection.close()
 
     if duration == 0:
-        sys.exit(f"{year} Is Empty")
+        sys.exit(f"No Data ({year})")
     return duration
