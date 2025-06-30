@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+log.py
 Script to log an entry in the history database.
 """
 import os
