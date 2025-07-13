@@ -4,7 +4,21 @@ Echoes is a simple tool logging a history of music listened locally, and generat
 
 ## 📋 Description
 
-Echoes logs an entry in a history database for every song listened locally through a player. Statistics are regularly exported for the current year, including a top five of titles, a top five of artists, a top five of genres, and the total count of different titles, artists, and genres. Those statistics are saved in JSON format in the `data/exports/` directory (automatically created if not existing), are then used to generate a nice visualization. The aim of this project is to have the opportunity to get statistics about some listening activity from local files using a player, without a streaming service.
+Echoes logs an entry in a history database for every song listened locally through a player. Statistics are regularly exported for the current year, including a top five of titles, artists and genres, among others. Those statistics are saved in JSON format in the `data/exports/` directory (automatically created if not existing), are then used to generate a nice visualization. The aim of this project is to have the opportunity to get statistics about some listening activity from local files using a player, without a streaming service.
+
+### Statistics:
+
+Available statistics saved in the JSON file for each year include the following:
+
+- Top Five Titles
+- Top Five Artists
+- Top Five Genres
+- Total Unique Titles Count
+- Total Unique Artists Count
+- Total Unique Genres Count
+- Average Daily Titles Count
+- Average Daily Duration (minutes)
+- Total Duration (minutes)
 
 ## 📂 Project Structure
 
