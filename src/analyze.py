@@ -159,11 +159,11 @@ def total_unique_genres(year):
     return count
 
 
-def average_daily_titles(year):
+def average_daily_count(year):
     """
-    Computes daily titles average.
+    Computes average daily count.
 
-    Return: daily titles average count
+    Return: average daily count
     """
     connection = sqlite3.connect(DB_PATH)
     connection.row_factory = sqlite3.Row

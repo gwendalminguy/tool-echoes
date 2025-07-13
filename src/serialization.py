@@ -12,7 +12,7 @@ def export_statistics(titles, artists, genres, counts, durations, year):
             "total_unique_titles": counts["total_unique_titles"],
             "total_unique_artists": counts["total_unique_artists"],
             "total_unique_genres": counts["total_unique_genres"],
-            "average_daily_titles": round(int(counts["average_daily_titles"]))
+            "average_daily_count": round(int(counts["average_daily_count"]))
         },
         "durations": {
             "average_daily_duration": round(int(durations["average_daily_duration"]) / 60),
@@ -68,9 +68,10 @@ def show_statistics(titles, artists, genres, counts, durations):
         length = int(int(item['length']) / 60)
         print(f"{item['genre']}:".ljust(75), f"{length} minutes".rjust(10))
     print("--------------------------------------------------------------------------------------")
+
     print(f"{counts["total_unique_titles"]} total unique titles")
     print(f"{counts["total_unique_artists"]} total unique artists")
     print(f"{counts["total_unique_genres"]} total unique genres")
-    print(f"{round(int(counts["average_daily_titles"]))} average daily titles")
+    print(f"{round(int(counts["average_daily_count"]))} average daily count")
     print(f"{round(int(durations["average_daily_duration"]) / 60)} average daily duration", end="\n\n")
     print(f"{int(int(durations["total_duration"]) / 60)} minutes")
