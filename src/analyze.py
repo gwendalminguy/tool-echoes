@@ -11,6 +11,8 @@ from datetime import datetime
 DB_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../data/history.db"
 
 
+# ---------- TOP ----------
+
 def top_titles(year):
     """
     Computes top titles ordered by occurences.
@@ -86,6 +88,8 @@ def top_genres(year):
     return items
 
 
+# ---------- COUNTS ----------
+
 def total_unique_titles(year):
     """
     Computes total unique titles count.
@@ -155,11 +159,65 @@ def total_unique_genres(year):
     return count
 
 
+def average_daily_titles(year):
+    """
+    Computes daily titles average.
+
+    Return: daily titles average count
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT AVG(count)
+        FROM (
+            SELECT COUNT(*) as count
+            FROM listen
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY DATE(date)
+        )
+    """)
+    count = cursor.fetchone()[0]
+    connection.close()
+
+    if count == 0:
+        sys.exit(f"No Data ({year})")
+    return count
+
+
+# ---------- DURATIONS ----------
+
+def average_daily_duration(year):
+    """
+    Computes daily average duration.
+
+    Return: daily average duration in seconds
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT AVG(daily_duration)
+        FROM (
+            SELECT SUM(duration) as daily_duration
+            FROM listen
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY DATE(date)
+        )
+    """)
+    duration = cursor.fetchone()[0]
+    connection.close()
+
+    if duration == 0:
+        sys.exit(f"No Data ({year})")
+    return duration
+
+
 def total_duration(year):
     """
     Computes total duration.
 
-    Return: total duration
+    Return: total duration in seconds
     """
     connection = sqlite3.connect(DB_PATH)
     connection.row_factory = sqlite3.Row
@@ -175,29 +233,3 @@ def total_duration(year):
     if duration == 0:
         sys.exit(f"No Data ({year})")
     return duration
-
-
-def average_daily_titles(year):
-    """
-    Computes daily titles average.
-
-    Return: daily titles average
-    """
-    connection = sqlite3.connect(DB_PATH)
-    connection.row_factory = sqlite3.Row
-    cursor = connection.cursor()
-    cursor.execute(f"""
-        SELECT AVG(count)
-        FROM (
-            SELECT COUNT(*) as count
-            FROM listen
-            WHERE strftime('%Y', date)='{year}'
-            GROUP BY DATE(date)
-        )
-    """)
-    average = cursor.fetchone()[0]
-    connection.close()
-
-    if average == 0:
-        sys.exit(f"No Data ({year})")
-    return average

@@ -7,7 +7,9 @@ import os
 import json
 import argparse
 from datetime import datetime
-from analyze import top_titles, top_artists, top_genres, total_unique_titles, total_unique_artists, total_unique_genres, total_duration, average_daily_titles
+from analyze import top_titles, top_artists, top_genres
+from analyze import total_unique_titles, total_unique_artists, total_unique_genres, average_daily_titles
+from analyze import average_daily_duration, total_duration
 from serialization import export_statistics, show_statistics
 from management import initialize_history
 
@@ -25,16 +27,19 @@ def main():
     titles = top_titles(year)
     artists = top_artists(year)
     genres = top_genres(year)
-    count = {
+    counts = {
         "total_unique_titles": total_unique_titles(year),
         "total_unique_artists": total_unique_artists(year),
         "total_unique_genres": total_unique_genres(year),
-        "total_duration": total_duration(year),
         "average_daily_titles": average_daily_titles(year)
     }
+    durations = {
+        "average_daily_duration": average_daily_duration(year),
+        "total_duration": total_duration(year)
+    }
 
-    export_statistics(titles, artists, genres, count, year)
-    #show_statistics(titles, artists, genres, count)
+    export_statistics(titles, artists, genres, counts, durations, year)
+    #show_statistics(titles, artists, genres, counts, durations)
 
 
 if __name__ == "__main__":
