@@ -255,3 +255,28 @@ def total_duration(year):
     if duration == 0:
         sys.exit(f"No Data ({year})")
     return duration
+
+
+def maximum_activity_day(year):
+    """
+    Computes maximum activity day.
+
+    Return: count, duration and date of maximum activity day
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT COUNT(*) as count, SUM(duration) as duration, DATE(date)
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+        GROUP BY DATE(date)
+        ORDER BY count DESC
+        LIMIT 1
+    """)
+    activity = cursor.fetchone()[0:]
+    connection.close()
+
+    if activity == 0:
+        sys.exit(f"No Data ({year})")
+    return activity

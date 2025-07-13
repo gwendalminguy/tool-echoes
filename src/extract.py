@@ -7,9 +7,12 @@ import os
 import json
 import argparse
 from datetime import datetime
+
 from analyze import top_titles, top_artists, top_genres
 from analyze import total_unique_titles, total_unique_artists, total_unique_genres, average_daily_count, total_count
 from analyze import average_daily_duration, total_duration
+from analyze import maximum_activity_day
+
 from serialization import export_statistics, show_statistics
 from management import initialize_history
 
@@ -38,9 +41,12 @@ def main():
         "average_daily_duration": average_daily_duration(year),
         "total_duration": total_duration(year)
     }
+    activity = {
+        "maximum_activity_day": maximum_activity_day(year)
+    }
 
-    export_statistics(titles, artists, genres, counts, durations, year)
-    # show_statistics(titles, artists, genres, counts, durations)
+    export_statistics(titles, artists, genres, counts, durations, activity, year)
+    # show_statistics(titles, artists, genres, counts, activity, durations)
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ import os
 import json
 
 
-def export_statistics(titles, artists, genres, counts, durations, year):
+def export_statistics(titles, artists, genres, counts, durations, activity, year):
     result = {
         "counts": {
             "total_unique_titles": counts["total_unique_titles"],
@@ -18,6 +18,13 @@ def export_statistics(titles, artists, genres, counts, durations, year):
         "durations": {
             "average_daily_duration": round(int(durations["average_daily_duration"]) / 60),
             "total_duration": round(int(durations["total_duration"]) / 60)
+        },
+        "activity": {
+            "day": {
+                "count": activity["maximum_activity_day"][0],
+                "duration": round(int(activity["maximum_activity_day"][1]) / 60),
+                "date": activity["maximum_activity_day"][2]
+            }
         },
         "titles": {},
         "artists": {},
@@ -56,7 +63,7 @@ def export_statistics(titles, artists, genres, counts, durations, year):
         json.dump(result, file, ensure_ascii=False, indent=4)
 
 
-def show_statistics(titles, artists, genres, counts, durations):
+def show_statistics(titles, artists, genres, counts, durations, activity):
     print("--------------------------------------------------------------------------------------")
     for item in titles:
         print(f"{item['artist']}: {item['title']}".ljust(75), f"({item['times']})".rjust(10))
@@ -77,3 +84,4 @@ def show_statistics(titles, artists, genres, counts, durations):
     print(f"{counts["total_count"]} total count")
     print(f"{round(int(durations["average_daily_duration"]) / 60)} average daily duration", end="\n\n")
     print(f"{int(int(durations["total_duration"]) / 60)} minutes")
+    print(f"{activity["maximum_activity_day"][0]} count on {activity["maximum_activity_day"][1]}")
