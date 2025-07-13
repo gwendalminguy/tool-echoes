@@ -132,6 +132,7 @@ def total_unique_artists(year):
         sys.exit(f"No Data ({year})")
     return count
 
+
 def total_unique_genres(year):
     """
     Computes total unique genres count.
@@ -174,3 +175,29 @@ def total_duration(year):
     if duration == 0:
         sys.exit(f"No Data ({year})")
     return duration
+
+
+def average_daily_titles(year):
+    """
+    Computes daily titles average.
+
+    Return: daily titles average
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT AVG(count)
+        FROM (
+            SELECT COUNT(*) as count
+            FROM listen
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY DATE(date)
+        )
+    """)
+    average = cursor.fetchone()[0]
+    connection.close()
+
+    if average == 0:
+        sys.exit(f"No Data ({year})")
+    return average

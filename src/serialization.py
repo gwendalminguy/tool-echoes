@@ -9,10 +9,11 @@ import json
 def export_statistics(titles, artists, genres, count, year):
     result = {
         "count": {
-            "total_titles": count["total_titles"],
-            "total_artists": count["total_artists"],
-            "total_genres": count["total_genres"],
-            "total_duration": int(int(count["total_duration"]) / 60)
+            "total_unique_titles": count["total_unique_titles"],
+            "total_unique_artists": count["total_unique_artists"],
+            "total_unique_genres": count["total_unique_genres"],
+            "total_duration": int(int(count["total_duration"]) / 60),
+            "average_daily_titles": round(int(count["average_daily_titles"]))
         },
         "titles": {},
         "artists": {},
@@ -64,7 +65,8 @@ def show_statistics(titles, artists, genres, count):
         length = int(int(item['length']) / 60)
         print(f"{item['genre']}:".ljust(75), f"{length} minutes".rjust(10))
     print("--------------------------------------------------------------------------------------")
-    print(f"{count["total_titles"]} titles")
-    print(f"{count["total_artists"]} artists")
-    print(f"{count["total_genres"]} genres")
+    print(f"{count["total_unique_titles"]} total unique titles")
+    print(f"{count["total_unique_artists"]} total unique artists")
+    print(f"{count["total_unique_genres"]} total unique genres")
     print(f"{int(int(count["total_duration"]) / 60)} minutes", end="\n\n")
+    print(f"{count["average_daily_titles"]} average daily titles")
