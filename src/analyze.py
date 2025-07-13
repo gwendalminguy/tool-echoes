@@ -185,6 +185,28 @@ def average_daily_count(year):
     return count
 
 
+def total_count(year):
+    """
+    Computes total count.
+
+    Return: total count
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT COUNT(*)
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+    """)
+    count = cursor.fetchone()[0]
+    connection.close()
+
+    if count == 0:
+        sys.exit(f"No Data ({year})")
+    return count
+
+
 # ---------- DURATIONS ----------
 
 def average_daily_duration(year):

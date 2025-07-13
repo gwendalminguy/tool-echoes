@@ -8,7 +8,7 @@ import json
 import argparse
 from datetime import datetime
 from analyze import top_titles, top_artists, top_genres
-from analyze import total_unique_titles, total_unique_artists, total_unique_genres, average_daily_count
+from analyze import total_unique_titles, total_unique_artists, total_unique_genres, average_daily_count, total_count
 from analyze import average_daily_duration, total_duration
 from serialization import export_statistics, show_statistics
 from management import initialize_history
@@ -31,7 +31,8 @@ def main():
         "total_unique_titles": total_unique_titles(year),
         "total_unique_artists": total_unique_artists(year),
         "total_unique_genres": total_unique_genres(year),
-        "average_daily_count": average_daily_count(year)
+        "average_daily_count": average_daily_count(year),
+        "total_count": total_count(year)
     }
     durations = {
         "average_daily_duration": average_daily_duration(year),
