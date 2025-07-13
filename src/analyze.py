@@ -257,6 +257,8 @@ def total_duration(year):
     return duration
 
 
+# ---------- ACTIVITY ----------
+
 def maximum_activity_day(year):
     """
     Computes maximum activity day.
