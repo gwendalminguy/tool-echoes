@@ -20,6 +20,7 @@ Available statistics saved in the JSON file for each year include the following:
 - Total Count
 - Average Daily Duration (minutes)
 - Total Duration (minutes)
+- Maximum Activity Day
 
 ## 📂 Project Structure
 
