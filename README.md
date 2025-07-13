@@ -17,6 +17,7 @@ Available statistics saved in the JSON file for each year include the following:
 - Total Unique Artists Count
 - Total Unique Genres Count
 - Average Daily Count
+- Total Count
 - Average Daily Duration (minutes)
 - Total Duration (minutes)
 
