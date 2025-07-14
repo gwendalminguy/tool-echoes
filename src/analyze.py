@@ -269,10 +269,35 @@ def maximum_activity_day(year):
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
     cursor.execute(f"""
-        SELECT COUNT(*) as count, SUM(duration) as duration, DATE(date)
+        SELECT COUNT(*) as count, SUM(duration) as duration, DATE(date) day
         FROM listen
         WHERE strftime('%Y', date)='{year}'
-        GROUP BY DATE(date)
+        GROUP BY day
+        ORDER BY duration DESC
+        LIMIT 1
+    """)
+    activity = cursor.fetchone()[0:]
+    connection.close()
+
+    if activity == 0:
+        sys.exit(f"No Data ({year})")
+    return activity
+
+
+def maximum_activity_month(year):
+    """
+    Computes maximum activity month.
+
+    Return: count, duration and date of maximum activity month
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT COUNT(*) as count, SUM(duration) as duration, strftime('%Y-%m', date) as month
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+        GROUP BY month
         ORDER BY duration DESC
         LIMIT 1
     """)

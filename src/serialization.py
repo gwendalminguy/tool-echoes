@@ -24,6 +24,11 @@ def export_statistics(titles, artists, genres, counts, durations, activity, year
                 "count": activity["maximum_activity_day"][0],
                 "duration": round(int(activity["maximum_activity_day"][1]) / 60),
                 "date": activity["maximum_activity_day"][2]
+            },
+            "month": {
+                "count": activity["maximum_activity_month"][0],
+                "duration": round(int(activity["maximum_activity_month"][1]) / 60),
+                "date": activity["maximum_activity_month"][2]
             }
         },
         "titles": {},
@@ -84,4 +89,5 @@ def show_statistics(titles, artists, genres, counts, durations, activity):
     print(f"{counts["total_count"]} total count")
     print(f"{round(int(durations["average_daily_duration"]) / 60)} average daily duration", end="\n\n")
     print(f"{int(int(durations["total_duration"]) / 60)} minutes")
-    print(f"{activity["maximum_activity_day"][0]} count on {activity["maximum_activity_day"][1]}")
+    print(f"{activity["maximum_activity_day"][0]} count for {int(activity["maximum_activity_day"][1]) / 60} minutes on {activity["maximum_activity_day"][2]}")
+    print(f"{activity["maximum_activity_month"][0]} count for {int(activity["maximum_activity_month"][1]) / 60} minutes on {activity["maximum_activity_month"][2]}")

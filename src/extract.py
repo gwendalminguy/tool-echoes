@@ -11,7 +11,7 @@ from datetime import datetime
 from analyze import top_titles, top_artists, top_genres
 from analyze import total_unique_titles, total_unique_artists, total_unique_genres, average_daily_count, total_count
 from analyze import average_daily_duration, total_duration
-from analyze import maximum_activity_day
+from analyze import maximum_activity_day, maximum_activity_month
 
 from serialization import export_statistics, show_statistics
 from management import initialize_history
@@ -42,7 +42,8 @@ def main():
         "total_duration": total_duration(year)
     }
     activity = {
-        "maximum_activity_day": maximum_activity_day(year)
+        "maximum_activity_day": maximum_activity_day(year),
+        "maximum_activity_month": maximum_activity_month(year)
     }
 
     export_statistics(titles, artists, genres, counts, durations, activity, year)
