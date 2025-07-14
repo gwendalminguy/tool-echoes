@@ -273,7 +273,7 @@ def maximum_activity_day(year):
         FROM listen
         WHERE strftime('%Y', date)='{year}'
         GROUP BY DATE(date)
-        ORDER BY count DESC
+        ORDER BY duration DESC
         LIMIT 1
     """)
     activity = cursor.fetchone()[0:]
