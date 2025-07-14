@@ -52,3 +52,7 @@ function showCard(index) {
 		section.classList.toggle('active', i === index);
 	});
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadStatistics();
+});
