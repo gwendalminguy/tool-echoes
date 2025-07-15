@@ -185,6 +185,31 @@ def average_daily_count(year):
     return count
 
 
+def average_monthly_count(year):
+    """
+    Computes average monthly count.
+
+    Return: average monthly count
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT AVG(count) FROM (
+            SELECT COUNT(*) as count
+            FROM listen
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY strftime('%m', date)
+        )
+    """)
+    count = cursor.fetchone()[0]
+    connection.close()
+
+    if count == 0:
+        sys.exit(f"No Data ({year})")
+    return count
+
+
 def total_count(year):
     """
     Computes total count.
