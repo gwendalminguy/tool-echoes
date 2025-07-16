@@ -20,6 +20,7 @@ Available statistics saved in the JSON file for each year include the following:
 - Average Monthly Count
 - Total Count
 - Average Daily Duration (minutes)
+- Average Monthly Duration (minutes)
 - Total Duration (minutes)
 - Maximum Activity Day
 - Maximum Activity Month
