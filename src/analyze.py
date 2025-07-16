@@ -260,6 +260,32 @@ def average_daily_duration(year):
     return duration
 
 
+def average_monthly_duration(year):
+    """
+    Computes monthly average duration.
+
+    Return: monthly average duration in seconds
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT AVG(monthly_duration)
+        FROM (
+            SELECT SUM(duration) as monthly_duration
+            FROM listen
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY strftime('%m', date)
+        )
+    """)
+    duration = cursor.fetchone()[0]
+    connection.close()
+
+    if duration == 0:
+        sys.exit(f"No Data ({year})")
+    return duration
+
+
 def total_duration(year):
     """
     Computes total duration.

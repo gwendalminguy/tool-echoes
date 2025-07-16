@@ -18,6 +18,7 @@ def export_statistics(titles, artists, genres, counts, durations, activity, year
         },
         "durations": {
             "average_daily_duration": round(int(durations["average_daily_duration"]) / 60),
+            "average_monthly_duration": round(int(durations["average_monthly_duration"]) / 60),
             "total_duration": round(int(durations["total_duration"]) / 60)
         },
         "activity": {
