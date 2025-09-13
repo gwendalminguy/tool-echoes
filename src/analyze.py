@@ -26,7 +26,7 @@ def top_titles(year):
         SELECT title, artist, COUNT(title) as times
         FROM listen
         WHERE strftime('%Y', date)='{year}'
-        GROUP BY title
+        GROUP BY artist, title
         ORDER BY times DESC
         LIMIT 5
     """)
