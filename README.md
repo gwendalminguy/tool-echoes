@@ -19,6 +19,7 @@ Available statistics saved in the JSON file for each year include the following:
 - Average Daily Count
 - Average Monthly Count
 - Total Count
+- Monthly Top Artist
 - Average Daily Duration (minutes)
 - Average Monthly Duration (minutes)
 - Total Duration (minutes)
@@ -134,6 +135,10 @@ $ ./src/extract.py [-y <year>]
 ### Year:
 
 If desired, the script can be launched to extract statistics for any previous year (as long as the history database contains matching entries). The desired year can then be chosen by calling it as a command-line argument with **-y** or **--year**, followed by the year itself.
+
+### Month:
+
+The month of the year up to which the monthly top artist is computed can also be chosen, by calling it as a command-line argument with **-m** or **--month**, followed by the month number itself.
 </details>
 
 ## 🚫 Limitations
