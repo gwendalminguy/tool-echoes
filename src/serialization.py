@@ -6,7 +6,7 @@ import os
 import json
 
 
-def export_statistics(titles, artists, genres, counts, durations, activity, year):
+def export_statistics(titles, artists, genres, counts, durations, activity, months, year, month):
     result = {
         "counts": {
             "total_unique_titles": counts["total_unique_titles"],
@@ -33,10 +33,17 @@ def export_statistics(titles, artists, genres, counts, durations, activity, year
                 "date": activity["maximum_activity_month"][2]
             }
         },
+        "months": {},
         "titles": {},
         "artists": {},
         "genres": {}
     }
+
+    for i in months["monthly_top_artist"].keys():
+        result["months"][i] = {
+            "artist": months["monthly_top_artist"][i][0],
+            "duration": round(int(months["monthly_top_artist"][i][1]) /60)
+        }
 
     for i in range(5):
         try:
@@ -70,7 +77,7 @@ def export_statistics(titles, artists, genres, counts, durations, activity, year
         json.dump(result, file, ensure_ascii=False, indent=4)
 
 
-def show_statistics(titles, artists, genres, counts, durations, activity):
+def show_statistics(titles, artists, genres, counts, durations, activity, months):
     print("--------------------------------------------------------------------------------------")
     for item in titles:
         print(f"{item['artist']}: {item['title']}".ljust(75), f"({item['times']})".rjust(10))

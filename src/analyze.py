@@ -320,7 +320,7 @@ def maximum_activity_day(year):
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
     cursor.execute(f"""
-        SELECT COUNT(*) as count, SUM(duration) as duration, DATE(date) day
+        SELECT COUNT(*) as count, SUM(duration) as duration, DATE(date) as day
         FROM listen
         WHERE strftime('%Y', date)='{year}'
         GROUP BY day
@@ -357,4 +357,39 @@ def maximum_activity_month(year):
 
     if activity == 0:
         sys.exit(f"No Data ({year})")
+    return activity
+
+
+# ---------- MONTHS ----------
+
+def monthly_top_artist(year, month):
+    """
+    Computes monthly top artist.
+
+    Return: artist, duration and date of monthly top artist.
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+
+    activity = {}
+
+    for i in range(int(month)):
+        current = str('{:02}'.format(i + 1))
+        cursor.execute(f"""
+            SELECT artist, SUM(duration) as duration
+            FROM listen
+            WHERE strftime('%Y-%m', date)='{year}-{current}'
+            GROUP BY artist
+            ORDER BY duration DESC
+            LIMIT 1
+        """)
+        result = cursor.fetchone()
+        if result:
+            activity[current] = result[0:]
+
+    connection.close()
+
+    if activity == 0:
+        sys.exit(f"No Data ({year}-{month})")
     return activity
