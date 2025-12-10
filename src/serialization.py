@@ -42,7 +42,8 @@ def export_statistics(titles, artists, genres, counts, durations, activity, mont
     for i in months["monthly_top_artist"].keys():
         result["months"][i] = {
             "artist": months["monthly_top_artist"][i][0],
-            "duration": round(int(months["monthly_top_artist"][i][1]) /60)
+            "duration": round(int(months["monthly_top_artist"][i][1]) / 60),
+            "total_duration": round(int(months["monthly_total_duration"][i][0]) / 60)
         }
 
     for i in range(5):

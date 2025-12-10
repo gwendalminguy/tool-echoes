@@ -393,3 +393,35 @@ def monthly_top_artist(year, month):
     if activity == 0:
         sys.exit(f"No Data ({year}-{month})")
     return activity
+
+
+def monthly_total_duration(year, month):
+    """
+    Computes monthly total duration.
+
+    Return: monthly total duration and date.
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+
+    activity = {}
+
+    for i in range(int(month)):
+        current = str('{:02}'.format(i + 1))
+        cursor.execute(f"""
+            SELECT SUM(duration), strftime('%Y-%m', date) as month
+            FROM listen
+            WHERE month='{year}-{current}'
+            GROUP BY month
+            LIMIT 1
+        """)
+        result = cursor.fetchone()
+        if result:
+            activity[current] = result[0:]
+
+    connection.close()
+
+    if activity == 0:
+        sys.exit(f"No Data ({year}-{month})")
+    return activity
