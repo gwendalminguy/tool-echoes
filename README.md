@@ -19,7 +19,8 @@ Available statistics saved in the JSON file for each year include the following:
 - Average Daily Count
 - Average Monthly Count
 - Total Count
-- Monthly Top Artist
+- Monthly Top Artist & Duration (minutes)
+- Monthly Total Duration (minutes)
 - Average Daily Duration (minutes)
 - Average Monthly Duration (minutes)
 - Total Duration (minutes)
