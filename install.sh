@@ -1,7 +1,6 @@
 #!/bin/bash
 
 mkdir -p data/exports
-ln -s ../data/exports web/exports
 chmod u+x run.sh
 
 LOG=$(realpath ./src/log.py)
