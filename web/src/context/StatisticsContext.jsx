@@ -10,7 +10,7 @@ export function StatisticsProvider({ year, children }) {
   const [next, setNext] = useState(false);
 
   useEffect(() => {
-    fetch(`/exports/${year}.json?t=${Date.now()}`)
+    fetch(`/exports/${year}.json`)
       .then((r) => r.json())
       .then(setStatistics)
       .finally(() => setLoading(false));
@@ -20,14 +20,12 @@ export function StatisticsProvider({ year, children }) {
     const prevYear = year - 1;
     const nextYear = year + 1;
 
-    const checkExists = (y, setter) => {
-      fetch(`/exports/${y}.json`, { method: "HEAD" })
-        .then((res) => setter(res.ok))
-        .catch(() => setter(false));
-    };
-
-    checkExists(prevYear, setPrev);
-    checkExists(nextYear, setNext);
+    fetch("/exports/index.json")
+      .then(res => res.json())
+      .then(data => {
+        setPrev(data.years.includes(prevYear));
+        setNext(data.years.includes(nextYear));
+      });
   }, [year]);
 
   return (
