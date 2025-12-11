@@ -173,6 +173,14 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+dist/
+*.local
+
 # Custom
 .DS_Store
 data/
