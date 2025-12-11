@@ -13,10 +13,8 @@ function App() {
 
   return (
     <StatisticsProvider year={year}>
-      <div className="app">
-        <YearSelector year={year} setYear={setYear} />
-        <DashboardDisplay />
-      </div>
+      <YearSelector year={year} setYear={setYear} />
+      <DashboardDisplay />
     </StatisticsProvider>
   );
 }
