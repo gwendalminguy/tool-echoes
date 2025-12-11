@@ -178,5 +178,4 @@ cython_debug/
 data/
 web/exports
 *.db
-*.json
 *.swp
