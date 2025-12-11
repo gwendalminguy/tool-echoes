@@ -15,7 +15,7 @@ function App() {
     <StatisticsProvider year={year}>
       <div className="app">
         <YearSelector year={year} setYear={setYear} />
-        <Dashboard />
+        <DashboardDisplay />
       </div>
     </StatisticsProvider>
   );
