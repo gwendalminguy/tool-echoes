@@ -184,6 +184,6 @@ dist/
 # Custom
 .DS_Store
 data/
-web/exports
+web/public/exports/
 *.db
 *.swp
