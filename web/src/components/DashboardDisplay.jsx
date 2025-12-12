@@ -74,9 +74,13 @@ function DashboardDisplay() {
       <ItemCard cardClass={invisibleCard} data={totalUniqueGenres} unit="genres" />
       <ItemCard cardClass={invisibleCard} data={totalUniqueTitles} unit="titles" />
 
-      <NumberCard cardClass={visibleCard} name="Total Duration" data={totalDuration} unit="minutes" />
+      <NumberCard cardClass={visibleCard} name="Average Daily Count" data={averageDailyCount} unit="titles" />
+      <NumberCard cardClass={visibleCard} name="Average Monthly Count" data={averageMonthlyCount} unit="titles" />
       <NumberCard cardClass={visibleCard} name="Total Count" data={totalCount} unit="titles" />
-      <NumberCard cardClass={visibleCard} name="Total Count" data={totalCount} unit="minutes" />
+
+      <NumberCard cardClass={visibleCard} name="Average Daily Duration" data={averageDailyDuration} unit="minutes" />
+      <NumberCard cardClass={visibleCard} name="Average Monthly Duration" data={averageMonthlyDuration} unit="minutes" />
+      <NumberCard cardClass={visibleCard} name="Total Duration" data={totalDuration} unit="minutes" />
 
       <TopFiveCard cardClass={visibleCard} name="Top Artists" data={dataArtists} unit="minutes" />
       <TopFiveCard cardClass={visibleCard} name="Top Genres" data={dataGenres} unit="minutes" />
