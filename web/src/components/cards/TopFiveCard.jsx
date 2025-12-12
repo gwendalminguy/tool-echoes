@@ -7,7 +7,7 @@ function TopFiveCard({ cardClass, name, data, unit }) {
       <h2 className="text-xl font-semibold mb-4">{name}</h2>
       <ol className="list-decimal ml-6 space-y-2">
         {data.map((item, index) => (
-          <li key={index} className="text-gray-700">
+          <li key={index}>
             <span className="font-medium">{item.primary}</span>
             <span className="text-gray-500"> ({item.secondary} {unit})</span>
           </li>
