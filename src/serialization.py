@@ -31,6 +31,7 @@ def export_statistics(titles, artists, genres, counts, durations, months, year, 
         result["months"][i] = {
             "artist": months["monthly_top_artist"][i][0],
             "duration": round(int(months["monthly_top_artist"][i][1]) / 60),
+            "total_count": int(months["monthly_total_count"][i][0]),
             "total_duration": round(int(months["monthly_total_duration"][i][0]) / 60)
         }
 
@@ -83,8 +84,11 @@ def show_statistics(titles, artists, genres, counts, durations, months):
     print(f"{counts["total_unique_titles"]} total unique titles")
     print(f"{counts["total_unique_artists"]} total unique artists")
     print(f"{counts["total_unique_genres"]} total unique genres")
+
     print(f"{round(int(counts["average_daily_count"]))} average daily count")
     print(f"{round(int(counts["average_monthly_count"]))} average monthly count")
     print(f"{counts["total_count"]} total count")
-    print(f"{round(int(durations["average_daily_duration"]) / 60)} average daily duration", end="\n\n")
-    print(f"{int(int(durations["total_duration"]) / 60)} minutes")
+
+    print(f"{round(int(durations["average_daily_duration"]) / 60)} average daily duration")
+    print(f"{round(int(durations["average_monthly_duration"]) / 60)} average monthly duration")
+    print(f"{int(int(durations["total_duration"]) / 60)} minutes", end="\n\n")
