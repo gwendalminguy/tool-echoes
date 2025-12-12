@@ -60,7 +60,7 @@ function DashboardDisplay() {
 
     setDataTitles(
       Object.values(statistics.titles).map((item) => ({
-        primary: item.title,
+        primary: `${item.artist} - ${item.title}`,
         secondary: item.times,
       }))
     );
