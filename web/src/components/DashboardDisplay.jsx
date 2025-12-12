@@ -7,8 +7,8 @@ import NumberCard from "./cards/NumberCard";
 import ItemCard from "./cards/ItemCard";
 import MonthlyChartCard from "./cards/MonthlyChartCard";
 
-const visibleCard = "bg-white rounded-2xl shadow-lg p-6 border border-gray-100";
-const invisibleCard = "bg-white rounded-2xl p-6";
+const visibleCard = "bg-base-100 rounded-2xl shadow-lg p-6 border border-base-200";
+const invisibleCard = "rounded-2xl p-6";
 
 function DashboardDisplay() {
   const { statistics, loading } = useStatistics();
@@ -69,10 +69,10 @@ function DashboardDisplay() {
   if (loading) return <div className={visibleCard}>Loading…</div>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 p-6">
-      <ItemCard cardClass={invisibleCard} icon="None" data={totalUniqueArtists} unit="artists" />
-      <ItemCard cardClass={invisibleCard} icon="None" data={totalUniqueGenres} unit="genres" />
-      <ItemCard cardClass={invisibleCard} icon="None" data={totalUniqueTitles} unit="titles" />
+    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 p-6">
+      <ItemCard cardClass={invisibleCard} data={totalUniqueArtists} unit="artists" />
+      <ItemCard cardClass={invisibleCard} data={totalUniqueGenres} unit="genres" />
+      <ItemCard cardClass={invisibleCard} data={totalUniqueTitles} unit="titles" />
 
       <NumberCard cardClass={visibleCard} name="Total Duration" data={totalDuration} unit="minutes" />
       <NumberCard cardClass={visibleCard} name="Total Count" data={totalCount} unit="titles" />
