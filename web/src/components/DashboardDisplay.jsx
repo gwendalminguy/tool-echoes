@@ -3,14 +3,27 @@ import { useState, useEffect } from "react";
 import { useStatistics } from "../context/StatisticsContext";
 
 import TopFiveCard from "./cards/TopFiveCard";
-import CountsCard from "./cards/CountsCard";
-import DurationsCard from "./cards/DurationsCard";
+import NumberCard from "./cards/NumberCard";
+import ItemCard from "./cards/ItemCard";
 import MonthlyChartCard from "./cards/MonthlyChartCard";
 
-const cardClass = "bg-white rounded-2xl shadow-lg p-6 border border-gray-100";
+const visibleCard = "bg-white rounded-2xl shadow-lg p-6 border border-gray-100";
+const invisibleCard = "bg-white rounded-2xl p-6";
 
 function DashboardDisplay() {
   const { statistics, loading } = useStatistics();
+
+  const [totalUniqueArtists, setTotalUniqueArtists] = useState(0);
+  const [totalUniqueGenres, setTotalUniqueGenres] = useState(0);
+  const [totalUniqueTitles, setTotalUniqueTitles] = useState(0);
+
+  const [averageDailyCount, setAverageDailyCount] = useState(0);
+  const [averageMonthlyCount, setAverageMonthlyCount] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+
+  const [averageDailyDuration, setAverageDailyDuration] = useState(0);
+  const [averageMonthlyDuration, setAverageMonthlyDuration] = useState(0);
+  const [totalDuration, setTotalDuration] = useState(0);
 
   const [dataArtists, setDataArtists] = useState([]);
   const [dataGenres, setDataGenres] = useState([]);
@@ -18,6 +31,18 @@ function DashboardDisplay() {
 
   useEffect(() => {
     if (!statistics) return;
+
+    setTotalUniqueArtists(statistics.counts.total_unique_artists);
+    setTotalUniqueGenres(statistics.counts.total_unique_genres);
+    setTotalUniqueTitles(statistics.counts.total_unique_titles);
+
+    setAverageDailyCount(statistics.counts.average_daily_count);
+    setAverageMonthlyCount(statistics.counts.average_monthly_count);
+    setTotalCount(statistics.counts.total_count);
+
+    setAverageDailyDuration(statistics.durations.average_daily_duration);
+    setAverageMonthlyDuration(statistics.durations.average_monthly_duration);
+    setTotalDuration(statistics.durations.total_duration);
 
     setDataArtists(
       Object.values(statistics.artists).map((item) => ({
@@ -41,17 +66,23 @@ function DashboardDisplay() {
     );
   }, [statistics]);
 
-  if (loading) return <div className={cardClass}>Loading…</div>;
+  if (loading) return <div className={visibleCard}>Loading…</div>;
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 p-6">
-      <TopFiveCard cardClass={cardClass} name="Top Artists" data={dataArtists} unit="minutes" />
-      <TopFiveCard cardClass={cardClass} name="Top Genres" data={dataGenres} unit="minutes" />
-      <TopFiveCard cardClass={cardClass} name="Top Titles" data={dataTitles} unit="times" />
+      <ItemCard cardClass={invisibleCard} icon="None" data={totalUniqueArtists} unit="artists" />
+      <ItemCard cardClass={invisibleCard} icon="None" data={totalUniqueGenres} unit="genres" />
+      <ItemCard cardClass={invisibleCard} icon="None" data={totalUniqueTitles} unit="titles" />
 
-      <CountsCard cardClass={cardClass} />
-      <DurationsCard cardClass={cardClass} />
-      <MonthlyChartCard cardClass={cardClass} />
+      <NumberCard cardClass={visibleCard} name="Total Duration" data={totalDuration} unit="minutes" />
+      <NumberCard cardClass={visibleCard} name="Total Count" data={totalCount} unit="titles" />
+      <NumberCard cardClass={visibleCard} name="Total Count" data={totalCount} unit="minutes" />
+
+      <TopFiveCard cardClass={visibleCard} name="Top Artists" data={dataArtists} unit="minutes" />
+      <TopFiveCard cardClass={visibleCard} name="Top Genres" data={dataGenres} unit="minutes" />
+      <TopFiveCard cardClass={visibleCard} name="Top Titles" data={dataTitles} unit="times" />
+
+      <MonthlyChartCard cardClass={visibleCard} />
     </div>
   );
 }
