@@ -93,6 +93,7 @@ def update_index(year):
     os.makedirs(path, exist_ok=True)
 
     index_path = os.path.join(path, "index.json")
+    year_path = os.path.join(path, f"{year}.json")
     
     year = int(year)
 
@@ -100,19 +101,20 @@ def update_index(year):
         "years": []
     }
 
-    if os.path.exists(index_path):
-        with open(index_path, "r", encoding="utf-8") as file:
-            try:
-                data = json.load(file)
-            except json.JSONDecodeError:
-                pass
+    if os.path.exists(year_path):
+        if os.path.exists(index_path):
+            with open(index_path, "r", encoding="utf-8") as file:
+                try:
+                    data = json.load(file)
+                except json.JSONDecodeError:
+                    pass
 
-    if year not in data.get("years", []):
-        data["years"].append(year)
-        data["years"].sort()
+        if year not in data.get("years", []):
+            data["years"].append(year)
+            data["years"].sort()
 
-    with open(index_path, "w", encoding="utf-8") as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
+        with open(index_path, "w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 def show_statistics(titles, artists, genres, counts, durations, months):
