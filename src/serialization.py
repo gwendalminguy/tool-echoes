@@ -9,70 +9,81 @@ import shutil
 
 def export_statistics(titles, artists, genres, counts, durations, months, days, year):
     result = {
-        "counts": {
-            "total_unique_titles": counts["total_unique_titles"],
-            "total_unique_artists": counts["total_unique_artists"],
-            "total_unique_genres": counts["total_unique_genres"],
-            "average_daily_count": round(int(counts["average_daily_count"])),
-            "average_monthly_count": round(int(counts["average_monthly_count"])),
-            "total_count": counts["total_count"]
+        "summary": {
+            "items": {
+                "total_unique_titles": counts["total_unique_titles"],
+                "total_unique_artists": counts["total_unique_artists"],
+                "total_unique_genres": counts["total_unique_genres"],
+            },
+            "counts": {
+                "average_daily_count": round(int(counts["average_daily_count"])),
+                "average_monthly_count": round(int(counts["average_monthly_count"])),
+                "total_count": counts["total_count"],
+            },
+            "durations": {
+                "average_daily_duration": round(int(durations["average_daily_duration"]) / 60),
+                "average_monthly_duration": round(int(durations["average_monthly_duration"]) / 60),
+                "total_duration": round(int(durations["total_duration"]) / 60),
+            },
         },
-        "durations": {
-            "average_daily_duration": round(int(durations["average_daily_duration"]) / 60),
-            "average_monthly_duration": round(int(durations["average_monthly_duration"]) / 60),
-            "total_duration": round(int(durations["total_duration"]) / 60)
+
+        "top": {
+            "titles": [],
+            "artists": [],
+            "genres": [],
         },
-        "titles": {},
-        "artists": {},
-        "genres": {},
-        "months": {},
-        "days": {}
+
+        "calendar": {
+            "months": {}
+        }
     }
 
-    # TOP FIVE
-    for i in range(5):
-        try:
-            result["titles"]["title_" + str(i + 1)] = {
-                "title": titles[i]["title"],
-                "artist": titles[i]["artist"],
-                "times": titles[i]["times"]
-            }
-        except IndexError:
-            pass
-        try:
-            result["artists"]["artist_" + str(i + 1)] = {
-                "artist": artists[i]["artist"],
-                "length": int(int(artists[i]['length']) / 60)
-            }
-        except IndexError:
-            pass
-        try:
-            result["genres"]["genre_" + str(i + 1)] = {
-                "genre": genres[i]["genre"],
-                "length": int(int(genres[i]['length']) / 60)
-            }
-        except IndexError:
-            pass
+    # TOP
+    for item in titles[:5]:
+        result["top"]["titles"].append({
+            "title": item["title"],
+            "artist": item["artist"],
+            "times": item["times"],
+        })
+
+    for item in artists[:5]:
+        result["top"]["artists"].append({
+            "artist": item["artist"],
+            "duration": int(int(item["length"]) / 60),
+        })
+
+    for item in genres[:5]:
+        result["top"]["genres"].append({
+            "genre": item["genre"],
+            "duration": int(int(item["length"]) / 60),
+        })
 
     # MONTHS
     for i in range(len(months["monthly_total"])):
-        month = months["monthly_total"][i]["month"][5:]
-        result["months"][month] = {
-            "artist": months["monthly_top_artist"][i]["artist"],
-            "duration": round(int(months["monthly_top_artist"][i]["duration"]) / 60),
-            "total_count": int(months["monthly_total"][i]["count"]),
-            "total_duration": round(int(months["monthly_total"][i]["duration"]) / 60)
-		}
+        month_key = months["monthly_total"][i]["month"][5:]
+
+        result["calendar"]["months"][month_key] = {
+            "summary": {
+                "top_artist": months["monthly_top_artist"][i]["artist"],
+                "duration": round(int(months["monthly_top_artist"][i]["duration"]) / 60),
+                "total_count": int(months["monthly_total"][i]["count"]),
+                "total_duration": round(int(months["monthly_total"][i]["duration"]) / 60),
+            },
+            "days": {}
+        }
 
     # DAYS
     for i in range(len(days["daily_total"])):
-        day = days["daily_total"][i]["day"][5:]
-        result["days"][day] = {
-            "artist": days["daily_top_artist"][i]["artist"],
+        full_day = days["daily_total"][i]["day"]
+        month_key = full_day[5:7]
+        day_key = full_day[8:]
+
+        result["calendar"]["months"][month_key]["days"][day_key] = {
+            "top_artist": days["daily_top_artist"][i]["artist"],
             "duration": round(int(days["daily_top_artist"][i]["duration"]) / 60),
             "total_count": int(days["daily_total"][i]["count"]),
-            "total_duration": round(int(days["daily_total"][i]["duration"]) / 60)
-		}
+            "total_duration": round(int(days["daily_total"][i]["duration"]) / 60),
+        }
 
     base = os.path.dirname(os.path.realpath(__file__))
     path = os.path.join(base, "..", "data", "exports")
