@@ -4,7 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGri
 
 import { useStatistics } from "../../context/StatisticsContext";
 
-function MonthlyChartCard({ cardClass }) {
+function ChartCard({ cardClass }) {
   const { statistics, loading } = useStatistics();
   const [key, setKey] = useState("topArtist");
 
@@ -84,4 +84,4 @@ function MonthlyChartCard({ cardClass }) {
   );
 }
 
-export default MonthlyChartCard;
+export default ChartCard;
