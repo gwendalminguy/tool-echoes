@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LabelList } from "recharts";
 
 import { useStatistics } from "../../context/StatisticsContext";
 
 function MonthlyChartCard({ cardClass }) {
   const { statistics, loading } = useStatistics();
+  const [key, setKey] = useState("topArtist");
 
   if (loading) return <div className={cardClass}>Loading…</div>;
   if (!statistics) return <div className={cardClass}>No Data</div>;
@@ -32,32 +35,44 @@ function MonthlyChartCard({ cardClass }) {
       month: m.name,
       artist: info ? info.artist : "",
       duration: info ? info.duration : 0,
+      totalCount: info ? info.total_count : 0,
       totalDuration: info ? info.total_duration : 0,
     };
   });
 
   return (
     <div className={`${cardClass} col-span-full`}>
-      <h2 className="text-xl font-semibold mb-4">Monthly Chart (Duration)</h2>
+      <div className="flex flex-row justify-between">
+        {/* Title */}
+        <h2 className="text-xl font-semibold mb-4">Monthly Chart</h2>
+
+        {/* Tabs */}
+        <div className="tabs tabs-box h-8">
+          <input onClick={() => setKey("topArtist")} type="radio" name="monthly_chart_tabs" className="tab h-6" aria-label="Top Artist" defaultChecked />
+          <input onClick={() => setKey("totalCount")} type="radio" name="monthly_chart_tabs" className="tab h-6" aria-label="Total Count" />
+          <input onClick={() => setKey("totalDuration")} type="radio" name="monthly_chart_tabs" className="tab h-6" aria-label="Total Duration" />
+        </div>
+      </div>
+
+      {/* Chart */}
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 20 }}>
+        <BarChart data={data} margin={{ top: 25, right: 5, left: 0, bottom: 20 }}>
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey="month" />
           <YAxis />
           <Tooltip
-            formatter={(value, name, props) => {
-              const artist = props.payload.artist;
-              return [`${value} min`, `${artist}`];
-            }}
-            labelFormatter={(label) => `Month: ${label}`}
-            contentStyle={{ fontSize: "14px" }}
+            formatter={(value) =>
+              key === "totalCount"
+                ? [`${value} titles`, "Count"]
+                : [`${value} min`, "Duration"]
+            }
+            labelFormatter={(label) => `${label}`}
+            contentStyle={{ fontSize: "14px", borderRadius: "10px" }}
           />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <Bar dataKey="duration" fill="#4f46e5" barSize={50}>
-            <LabelList 
-              dataKey="artist" 
-              position="top" 
-              style={{ fontSize: 12, fill: "#333" }} 
-            />
+          <Bar dataKey={key === "topArtist" ? "duration" : key} fill="#4f46e5" barSize={50}>
+            {key === "topArtist" && (
+              <LabelList dataKey="artist" position="top" style={{ fontSize: 12, fill: "#333" }} />
+            )}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
