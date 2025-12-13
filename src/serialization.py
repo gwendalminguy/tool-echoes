@@ -4,6 +4,7 @@ Module containing functions to serialize statistics from the history database.
 """
 import os
 import json
+import shutil
 
 
 def export_statistics(titles, artists, genres, counts, durations, months, year, month):
@@ -65,6 +66,53 @@ def export_statistics(titles, artists, genres, counts, durations, months, year, 
 
     with open(f"{path}/{year}.json", "w", encoding="utf-8") as file:
         json.dump(result, file, ensure_ascii=False, indent=4)
+
+
+def copy_statistics(year):
+    base = os.path.dirname(os.path.realpath(__file__))
+    src_path = os.path.join(base, "..", "data", "exports")
+    dst_path = os.path.join(base, "..", "web", "public", "exports")
+    os.makedirs(dst_path, exist_ok=True)
+
+    files = [
+        f"{year}.json",
+        "index.json",
+    ]
+
+    for filename in files:
+        src_file = os.path.join(src_path, filename)
+        dst_file = os.path.join(dst_path, filename)
+        
+        if os.path.exists(src_file):
+            shutil.copy2(src_file, dst_file)
+
+
+def update_index(year):
+    base = os.path.dirname(os.path.realpath(__file__))
+    path = os.path.join(base, "..", "data", "exports")
+    os.makedirs(path, exist_ok=True)
+
+    index_path = os.path.join(path, "index.json")
+    
+    year = int(year)
+
+    data = {
+        "years": []
+    }
+
+    if os.path.exists(index_path):
+        with open(index_path, "r", encoding="utf-8") as file:
+            try:
+                data = json.load(file)
+            except json.JSONDecodeError:
+                pass
+
+    if year not in data.get("years", []):
+        data["years"].append(year)
+        data["years"].sort()
+
+    with open(index_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 def show_statistics(titles, artists, genres, counts, durations, months):

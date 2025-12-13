@@ -14,7 +14,7 @@ from analyze import average_daily_count, average_monthly_count, total_count
 from analyze import average_daily_duration, average_monthly_duration, total_duration
 from analyze import monthly_top_artist, monthly_total_count, monthly_total_duration
 
-from serialization import export_statistics, show_statistics
+from serialization import export_statistics, copy_statistics, update_index, show_statistics
 from management import initialize_history
 
 
@@ -54,6 +54,9 @@ def main():
     }
 
     export_statistics(titles, artists, genres, counts, durations, months, year, month)
+    update_index(year)
+    copy_statistics(year)
+
     # show_statistics(titles, artists, genres, counts, durations, months)
 
 
