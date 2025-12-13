@@ -32,34 +32,34 @@ function DashboardDisplay() {
   useEffect(() => {
     if (!statistics) return;
 
-    setTotalUniqueArtists(statistics.counts.total_unique_artists);
-    setTotalUniqueGenres(statistics.counts.total_unique_genres);
-    setTotalUniqueTitles(statistics.counts.total_unique_titles);
+    setTotalUniqueArtists(statistics.summary.items.total_unique_artists);
+    setTotalUniqueGenres(statistics.summary.items.total_unique_genres);
+    setTotalUniqueTitles(statistics.summary.items.total_unique_titles);
 
-    setAverageDailyCount(statistics.counts.average_daily_count);
-    setAverageMonthlyCount(statistics.counts.average_monthly_count);
-    setTotalCount(statistics.counts.total_count);
+    setAverageDailyCount(statistics.summary.counts.average_daily_count);
+    setAverageMonthlyCount(statistics.summary.counts.average_monthly_count);
+    setTotalCount(statistics.summary.counts.total_count);
 
-    setAverageDailyDuration(statistics.durations.average_daily_duration);
-    setAverageMonthlyDuration(statistics.durations.average_monthly_duration);
-    setTotalDuration(statistics.durations.total_duration);
+    setAverageDailyDuration(statistics.summary.durations.average_daily_duration);
+    setAverageMonthlyDuration(statistics.summary.durations.average_monthly_duration);
+    setTotalDuration(statistics.summary.durations.total_duration);
 
     setDataArtists(
-      Object.values(statistics.artists).map((item) => ({
+      Object.values(statistics.top.artists).map((item) => ({
         primary: item.artist,
-        secondary: item.length,
+        secondary: item.duration,
       }))
     );
 
     setDataGenres(
-      Object.values(statistics.genres).map((item) => ({
+      Object.values(statistics.top.genres).map((item) => ({
         primary: item.genre,
-        secondary: item.length,
+        secondary: item.duration,
       }))
     );
 
     setDataTitles(
-      Object.values(statistics.titles).map((item) => ({
+      Object.values(statistics.top.titles).map((item) => ({
         primary: `${item.artist} - ${item.title}`,
         secondary: item.times,
       }))
