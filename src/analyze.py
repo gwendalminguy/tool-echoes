@@ -310,7 +310,7 @@ def total_duration(year):
 
 # ---------- MONTHS ----------
 
-def monthly_top_artist(year, month):
+def monthly_top_artist(year):
     """
     Computes monthly top artist.
 
@@ -320,88 +320,109 @@ def monthly_top_artist(year, month):
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
 
-    activity = {}
-
-    for i in range(int(month)):
-        current = str('{:02}'.format(i + 1))
-        cursor.execute(f"""
-            SELECT artist, SUM(duration) as duration
+    cursor.execute(f"""
+        SELECT artist, duration, month
+        FROM (
+            SELECT artist, SUM(duration) AS duration, strftime('%Y-%m', date) AS month, ROW_NUMBER() OVER (
+                PARTITION BY strftime('%Y-%m', date)
+                ORDER BY SUM(duration) DESC
+            ) AS rank
             FROM listen
-            WHERE strftime('%Y-%m', date)='{year}-{current}'
-            GROUP BY artist
-            ORDER BY duration DESC
-            LIMIT 1
-        """)
-        result = cursor.fetchone()
-        if result:
-            activity[current] = result[0:]
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY month, artist
+        )
+        WHERE rank = 1
+        ORDER BY month;
+    """)
+    items = cursor.fetchall()
 
     connection.close()
 
-    if activity == 0:
-        sys.exit(f"No Data ({year}-{month})")
-    return activity
+    if len(items) == 0:
+        sys.exit(f"No Data ({year})")
+    return items
 
 
-def monthly_total_count(year, month):
+def monthly_total(year):
     """
-    Computes monthly total count.
+    Computes monthly total count and duration.
 
-    Return: monthly total count and date.
+    Return: monthly total count, duration and date.
     """
     connection = sqlite3.connect(DB_PATH)
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
 
-    activity = {}
-
-    for i in range(int(month)):
-        current = str('{:02}'.format(i + 1))
-        cursor.execute(f"""
-            SELECT COUNT(*), strftime('%Y-%m', date) as month
-            FROM listen
-            WHERE month='{year}-{current}'
-            GROUP BY month
-            LIMIT 1
-        """)
-        result = cursor.fetchone()
-        if result:
-            activity[current] = result[0:]
+    cursor.execute(f"""
+        SELECT COUNT(*) as count, SUM(duration) as duration, strftime('%Y-%m', date) as month
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+        GROUP BY month
+    """)
+    items = cursor.fetchall()
 
     connection.close()
 
-    if activity == 0:
-        sys.exit(f"No Data ({year}-{month})")
-    return activity
+    if len(items) == 0:
+        sys.exit(f"No Data ({year})")
+    return items
 
 
-def monthly_total_duration(year, month):
+# ---------- DAYS ----------
+
+def daily_top_artist(year):
     """
-    Computes monthly total duration.
+    Computes daily top artist.
 
-    Return: monthly total duration and date.
+    Return: artist, duration and date of daily top artist.
     """
     connection = sqlite3.connect(DB_PATH)
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
 
-    activity = {}
-
-    for i in range(int(month)):
-        current = str('{:02}'.format(i + 1))
-        cursor.execute(f"""
-            SELECT SUM(duration), strftime('%Y-%m', date) as month
+    cursor.execute(f"""
+        SELECT artist, duration, day
+        FROM (
+            SELECT artist, SUM(duration) AS duration, strftime('%Y-%m-%d', date) AS day, ROW_NUMBER() OVER (
+                PARTITION BY strftime('%Y-%m-%d', date)
+                ORDER BY SUM(duration) DESC
+            ) AS rank
             FROM listen
-            WHERE month='{year}-{current}'
-            GROUP BY month
-            LIMIT 1
-        """)
-        result = cursor.fetchone()
-        if result:
-            activity[current] = result[0:]
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY day, artist
+        )
+        WHERE rank = 1
+        ORDER BY day;
+    """)
+    items = cursor.fetchall()
 
     connection.close()
 
-    if activity == 0:
-        sys.exit(f"No Data ({year}-{month})")
-    return activity
+    if len(items) == 0:
+        sys.exit(f"No Data ({year})")
+    return items
+
+
+def daily_total(year):
+    """
+    Computes daily total count and duration.
+
+    Return: daily total count, duration and date.
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+
+    cursor.execute(f"""
+        SELECT COUNT(*) as count, SUM(duration) as duration, strftime('%Y-%m-%d', date) as day
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+        GROUP BY day
+    """)
+    items = cursor.fetchall()
+
+    connection.close()
+
+    if len(items) == 0:
+        sys.exit(f"No Data ({year})")
+    return items

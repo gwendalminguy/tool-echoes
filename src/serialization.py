@@ -7,7 +7,7 @@ import json
 import shutil
 
 
-def export_statistics(titles, artists, genres, counts, durations, months, year, month):
+def export_statistics(titles, artists, genres, counts, durations, months, days, year):
     result = {
         "counts": {
             "total_unique_titles": counts["total_unique_titles"],
@@ -22,20 +22,14 @@ def export_statistics(titles, artists, genres, counts, durations, months, year, 
             "average_monthly_duration": round(int(durations["average_monthly_duration"]) / 60),
             "total_duration": round(int(durations["total_duration"]) / 60)
         },
-        "months": {},
         "titles": {},
         "artists": {},
-        "genres": {}
+        "genres": {},
+        "months": {},
+        "days": {}
     }
 
-    for i in months["monthly_top_artist"].keys():
-        result["months"][i] = {
-            "artist": months["monthly_top_artist"][i][0],
-            "duration": round(int(months["monthly_top_artist"][i][1]) / 60),
-            "total_count": int(months["monthly_total_count"][i][0]),
-            "total_duration": round(int(months["monthly_total_duration"][i][0]) / 60)
-        }
-
+    # TOP FIVE
     for i in range(5):
         try:
             result["titles"]["title_" + str(i + 1)] = {
@@ -59,6 +53,26 @@ def export_statistics(titles, artists, genres, counts, durations, months, year, 
             }
         except IndexError:
             pass
+
+    # MONTHS
+    for i in range(len(months["monthly_total"])):
+        month = months["monthly_total"][i]["month"][5:]
+        result["months"][month] = {
+            "artist": months["monthly_top_artist"][i]["artist"],
+            "duration": round(int(months["monthly_top_artist"][i]["duration"]) / 60),
+            "total_count": int(months["monthly_total"][i]["count"]),
+            "total_duration": round(int(months["monthly_total"][i]["duration"]) / 60)
+		}
+
+    # DAYS
+    for i in range(len(days["daily_total"])):
+        day = days["daily_total"][i]["day"][5:]
+        result["days"][day] = {
+            "artist": days["daily_top_artist"][i]["artist"],
+            "duration": round(int(days["daily_top_artist"][i]["duration"]) / 60),
+            "total_count": int(days["daily_total"][i]["count"]),
+            "total_duration": round(int(days["daily_total"][i]["duration"]) / 60)
+		}
 
     base = os.path.dirname(os.path.realpath(__file__))
     path = os.path.join(base, "..", "data", "exports")
