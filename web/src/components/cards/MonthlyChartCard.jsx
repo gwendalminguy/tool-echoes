@@ -63,8 +63,8 @@ function MonthlyChartCard({ cardClass }) {
           <Tooltip
             formatter={(value) =>
               key === "totalCount"
-                ? [`${value} titles`, "Count"]
-                : [`${value} min`, "Duration"]
+                ? [`${value.toLocaleString("fr-FR")} titles`, "Count"]
+                : [`${value.toLocaleString("fr-FR")} min`, "Duration"]
             }
             labelFormatter={(label) => `${label}`}
             contentStyle={{ fontSize: "14px", borderRadius: "10px" }}

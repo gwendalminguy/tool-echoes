@@ -17,7 +17,7 @@ function ItemCard({ cardClass, data, unit }) {
         <IconComponent size={48} color="#4f46e5" />
       </div>
 		  <span className="text-4xl font-semibold">
-        {data}
+        {data.toLocaleString("fr-FR")}
       </span>
 		  <span className="text-lg font-medium text-gray-500">
         {unit}
