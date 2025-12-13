@@ -5,7 +5,7 @@ import { useStatistics } from "../context/StatisticsContext";
 import TopFiveCard from "./cards/TopFiveCard";
 import NumberCard from "./cards/NumberCard";
 import ItemCard from "./cards/ItemCard";
-import MonthlyChartCard from "./cards/MonthlyChartCard";
+import ChartCard from "./cards/ChartCard";
 
 const visibleCard = "bg-base-100 rounded-2xl shadow-lg p-6 border border-base-200";
 const invisibleCard = "rounded-2xl p-6";
@@ -86,7 +86,7 @@ function DashboardDisplay() {
       <NumberCard cardClass={visibleCard} name="Average Monthly Duration" data={averageMonthlyDuration} unit="minutes" />
       <NumberCard cardClass={visibleCard} name="Total Duration" data={totalDuration} unit="minutes" />
 
-      <MonthlyChartCard cardClass={visibleCard} />
+      <ChartCard cardClass={visibleCard} />
     </div>
   );
 }
