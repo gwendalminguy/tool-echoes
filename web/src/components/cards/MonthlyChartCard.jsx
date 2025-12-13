@@ -32,7 +32,8 @@ function MonthlyChartCard({ cardClass }) {
     const info = months[m.number];
 
     return {
-      month: m.name,
+      monthNumber: m.number,
+      monthName: m.name,
       artist: info ? info.artist : "",
       duration: info ? info.duration : 0,
       totalCount: info ? info.total_count : 0,
@@ -44,7 +45,7 @@ function MonthlyChartCard({ cardClass }) {
     <div className={`${cardClass} col-span-full`}>
       <div className="flex flex-row justify-between">
         {/* Title */}
-        <h2 className="text-xl font-semibold mb-4">Monthly Chart</h2>
+        <h2 className="text-lg font-semibold mb-4">Monthly Chart</h2>
 
         {/* Tabs */}
         <div className="tabs tabs-box h-8">
@@ -58,7 +59,7 @@ function MonthlyChartCard({ cardClass }) {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 25, right: 5, left: 0, bottom: 20 }}>
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="month" />
+          <XAxis dataKey="monthNumber" />
           <YAxis />
           <Tooltip
             formatter={(value) =>
@@ -66,7 +67,10 @@ function MonthlyChartCard({ cardClass }) {
                 ? [`${value.toLocaleString("fr-FR")} titles`, "Count"]
                 : [`${value.toLocaleString("fr-FR")} min`, "Duration"]
             }
-            labelFormatter={(label) => `${label}`}
+            labelFormatter={(_, payload) => {
+              if (!payload || !payload.length) return "";
+              return payload[0].payload.monthName;
+            }}
             contentStyle={{ fontSize: "14px", borderRadius: "10px" }}
           />
           <Bar dataKey={key === "topArtist" ? "duration" : key} fill="#4f46e5" barSize={50}>
