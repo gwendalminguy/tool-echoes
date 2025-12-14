@@ -69,6 +69,8 @@ def export_statistics(titles, artists, genres, counts, durations, months, days, 
                 "duration": 0,
                 "total_count": 0,
                 "total_duration": 0,
+                "average_daily_count": 0,
+                "average_daily_duration": 0,
             },
             "days": {}
         }
@@ -94,6 +96,8 @@ def export_statistics(titles, artists, genres, counts, durations, months, days, 
             "duration": round(int(months["monthly_top_artist"][i]["duration"]) / 60),
             "total_count": int(months["monthly_total"][i]["count"]),
             "total_duration": round(int(months["monthly_total"][i]["duration"]) / 60),
+            "average_daily_count": int(months["daily_average"][i]["average_daily_count"]),
+            "average_daily_duration": round(int(months["daily_average"][i]["average_daily_duration"]) / 60),
         }
 
     # DAYS

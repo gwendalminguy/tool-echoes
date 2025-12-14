@@ -368,6 +368,36 @@ def monthly_total(year):
     return items
 
 
+def daily_average(year):
+    """
+    Computes daily average count and duration for each month.
+
+    Return: daily average count, duration and date.
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+
+    cursor.execute(f"""
+        SELECT AVG(total_count) AS average_daily_count, AVG(total_duration) AS average_daily_duration, strftime('%Y-%m', day) AS month
+        FROM (
+            SELECT COUNT(*) AS total_count, SUM(duration) AS total_duration, strftime('%Y-%m-%d', date) AS day
+            FROM listen
+            WHERE strftime('%Y', date)='{year}'
+            GROUP BY day
+        )
+        GROUP BY month
+        ORDER BY month;
+    """)
+    items = cursor.fetchall()
+
+    connection.close()
+
+    if len(items) == 0:
+        sys.exit(f"No Data ({year})")
+    return items
+
+
 # ---------- DAYS ----------
 
 def daily_top_artist(year):

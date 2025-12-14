@@ -12,7 +12,7 @@ from analyze import top_titles, top_artists, top_genres
 from analyze import total_unique_titles, total_unique_artists, total_unique_genres
 from analyze import average_daily_count, average_monthly_count, total_count
 from analyze import average_daily_duration, average_monthly_duration, total_duration
-from analyze import monthly_top_artist, monthly_total
+from analyze import monthly_top_artist, monthly_total, daily_average
 from analyze import daily_top_artist, daily_total
 
 from serialization import export_statistics, copy_statistics, update_index, show_statistics
@@ -48,7 +48,8 @@ def main():
     }
     months = {
         "monthly_top_artist": monthly_top_artist(year),
-        "monthly_total": monthly_total(year)
+        "monthly_total": monthly_total(year), 
+        "daily_average": daily_average(year)
     }
     days = {
         "daily_top_artist": daily_top_artist(year),
