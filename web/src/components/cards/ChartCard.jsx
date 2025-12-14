@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LabelList } from "recharts";
+import { BarChart, Bar, ReferenceLine, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LabelList } from "recharts";
 
 import { useStatistics } from "../../context/StatisticsContext";
 
@@ -8,6 +8,7 @@ import MonthSelector from "../MonthSelector";
 
 function ChartCard({ cardClass, name }) {
   const { statistics, loading } = useStatistics();
+
   const [metric, setMetric] = useState("duration");
   const [selectedMonth, setSelectedMonth] = useState("12");
   const [view, setView] = useState("months");
@@ -15,7 +16,7 @@ function ChartCard({ cardClass, name }) {
   if (loading) return <div className={cardClass}>Loading…</div>;
   if (!statistics) return <div className={cardClass}>No Data</div>;
 
-  const { calendar } = statistics;
+  const { summary, calendar } = statistics;
   const { months } = calendar;
 
   const allMonths = [
@@ -55,17 +56,24 @@ function ChartCard({ cardClass, name }) {
   );
 
   const dataMonths = allMonths.map((m) => {
-    const summary = months?.[m.number]?.summary;
+    const data = months?.[m.number]?.summary;
 
     return {
       monthNumber: m.number,
       monthName: m.name,
-      artist: summary?.top_artist ?? "",
-      duration: summary?.duration ?? 0,
-      totalCount: summary?.total_count ?? 0,
-      totalDuration: summary?.total_duration ?? 0,
+      artist: data?.top_artist ?? "",
+      duration: data?.duration ?? 0,
+      averageCount: data?.average_daily_count ?? 0,
+      averageDuration: data?.average_daily_duration ?? 0,
+      totalCount: data?.total_count ?? 0,
+      totalDuration: data?.total_duration ?? 0,
     };
   });
+
+  const dataYear = {
+    averageCount: summary.counts.average_monthly_count,
+    averageDuration : summary.durations.average_monthly_duration,
+  };
 
   const data = view === "months"
     ? dataMonths
@@ -90,7 +98,7 @@ function ChartCard({ cardClass, name }) {
         <BarChart data={data} margin={{ top: 25, right: 5, left: 0, bottom: 20 }}>
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
           <XAxis dataKey={view === "months" ? "monthNumber" : "dayNumber"} />
-          <YAxis />
+          <YAxis width="auto" />
           <Tooltip
             formatter={(value) =>
               metric === "totalCount"
@@ -105,6 +113,17 @@ function ChartCard({ cardClass, name }) {
             }}
             contentStyle={{ fontSize: "14px", borderRadius: "10px" }}
           />
+          {metric !== "duration" && (
+            <ReferenceLine strokeDasharray="5 5" zIndex={1000} stroke="#4f46e5" y={
+              view === "months"
+                ? metric === "totalCount"
+                  ? dataYear.averageCount
+                  : dataYear.averageDuration
+                : metric === "totalCount"
+                  ? dataMonths[Number(selectedMonth) - 1].averageCount
+                  : dataMonths[Number(selectedMonth) - 1].averageDuration
+            } />
+          )}
           <Bar dataKey={metric} fill="#4f46e5" barSize={view === "months" ? 75 : 25} radius={view === "months" ? [5, 5, 0, 0] : [3, 3, 0, 0]}>
             {metric === "duration" && (
               <LabelList dataKey="artist" position="top" style={{ fontSize: view === "months" ? 12 : 8, fill: "#333" }} />
