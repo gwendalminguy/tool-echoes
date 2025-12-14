@@ -40,20 +40,20 @@ def export_statistics(titles, artists, genres, counts, durations, months, days, 
     }
 
     # TOP
-    for item in titles[:5]:
+    for item in titles:
         result["top"]["titles"].append({
             "title": item["title"],
             "artist": item["artist"],
             "times": item["times"],
         })
 
-    for item in artists[:5]:
+    for item in artists:
         result["top"]["artists"].append({
             "artist": item["artist"],
             "duration": int(int(item["length"]) / 60),
         })
 
-    for item in genres[:5]:
+    for item in genres:
         result["top"]["genres"].append({
             "genre": item["genre"],
             "duration": int(int(item["length"]) / 60),

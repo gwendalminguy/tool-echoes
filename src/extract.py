@@ -28,9 +28,11 @@ def main():
 
     initialize_history()
 
-    titles = top_titles(year)
-    artists = top_artists(year)
-    genres = top_genres(year)
+    limit = 5
+
+    titles = top_titles(year, limit)
+    artists = top_artists(year, limit)
+    genres = top_genres(year, limit)
     counts = {
         "total_unique_titles": total_unique_titles(year),
         "total_unique_artists": total_unique_artists(year),

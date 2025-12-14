@@ -13,7 +13,7 @@ DB_PATH = os.path.dirname(os.path.realpath(__file__)) + "/../data/history.db"
 
 # ---------- TOP ----------
 
-def top_titles(year):
+def top_titles(year, limit):
     """
     Computes top titles ordered by occurences.
 
@@ -28,7 +28,7 @@ def top_titles(year):
         WHERE strftime('%Y', date)='{year}'
         GROUP BY artist, title
         ORDER BY times DESC
-        LIMIT 5
+        LIMIT '{limit}'
     """)
     items = cursor.fetchall()
     connection.close()
@@ -38,7 +38,7 @@ def top_titles(year):
     return items
 
 
-def top_artists(year):
+def top_artists(year, limit):
     """
     Computes top artists ordered by total duration.
 
@@ -53,7 +53,7 @@ def top_artists(year):
         WHERE strftime('%Y', date)='{year}'
         GROUP BY artist
         ORDER BY length DESC
-        LIMIT 5
+        LIMIT '{limit}'
     """)
     items = cursor.fetchall()
     connection.close()
@@ -63,7 +63,7 @@ def top_artists(year):
     return items
 
 
-def top_genres(year):
+def top_genres(year, limit):
     """
     Computes top genres ordered by total duration.
 
@@ -78,7 +78,7 @@ def top_genres(year):
         WHERE strftime('%Y', date)='{year}'
         GROUP BY genre
         ORDER BY length DESC
-        LIMIT 5
+        LIMIT '{limit}'
     """)
     items = cursor.fetchall()
     connection.close()
