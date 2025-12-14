@@ -1,4 +1,4 @@
-function TopFiveCard({ cardClass, name, data, unit }) {
+function TopCard({ cardClass, name, data, unit }) {
 
   if (!data) return <div className={cardClass}>No Data</div>;
 
@@ -9,7 +9,7 @@ function TopFiveCard({ cardClass, name, data, unit }) {
         {data.map((item, index) => (
           <li key={index}>
             <span className="font-medium">{item.primary}</span>
-            <span className="text-gray-500"> ({item.secondary.toLocaleString("fr-FR")} {unit})</span>
+            <span className="text-gray-500 whitespace-nowrap"> ({item.secondary.toLocaleString("fr-FR")} {unit})</span>
           </li>
         ))}
       </ol>
@@ -17,4 +17,4 @@ function TopFiveCard({ cardClass, name, data, unit }) {
   );
 }
 
-export default TopFiveCard;
+export default TopCard;
