@@ -23,7 +23,7 @@ def top_titles(year, limit):
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
     cursor.execute(f"""
-        SELECT title, artist, COUNT(title) as times
+        SELECT title, artist, COUNT(title) AS times
         FROM listen
         WHERE strftime('%Y', date)='{year}'
         GROUP BY artist, title
@@ -48,7 +48,7 @@ def top_artists(year, limit):
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
     cursor.execute(f"""
-        SELECT artist, duration, SUM(duration) as length
+        SELECT artist, duration, SUM(duration) AS length
         FROM listen
         WHERE strftime('%Y', date)='{year}'
         GROUP BY artist
@@ -73,7 +73,7 @@ def top_genres(year, limit):
     connection.row_factory = sqlite3.Row
     cursor = connection.cursor()
     cursor.execute(f"""
-        SELECT genre, duration, SUM(duration) as length
+        SELECT genre, duration, SUM(duration) AS length
         FROM listen
         WHERE strftime('%Y', date)='{year}'
         GROUP BY genre
@@ -171,7 +171,7 @@ def average_daily_count(year):
     cursor.execute(f"""
         SELECT AVG(count)
         FROM (
-            SELECT COUNT(*) as count
+            SELECT COUNT(*) AS count
             FROM listen
             WHERE strftime('%Y', date)='{year}'
             GROUP BY DATE(date)
@@ -196,7 +196,7 @@ def average_monthly_count(year):
     cursor = connection.cursor()
     cursor.execute(f"""
         SELECT AVG(count) FROM (
-            SELECT COUNT(*) as count
+            SELECT COUNT(*) AS count
             FROM listen
             WHERE strftime('%Y', date)='{year}'
             GROUP BY strftime('%m', date)
@@ -246,7 +246,7 @@ def average_daily_duration(year):
     cursor.execute(f"""
         SELECT AVG(daily_duration)
         FROM (
-            SELECT SUM(duration) as daily_duration
+            SELECT SUM(duration) AS daily_duration
             FROM listen
             WHERE strftime('%Y', date)='{year}'
             GROUP BY DATE(date)
@@ -272,7 +272,7 @@ def average_monthly_duration(year):
     cursor.execute(f"""
         SELECT AVG(monthly_duration)
         FROM (
-            SELECT SUM(duration) as monthly_duration
+            SELECT SUM(duration) AS monthly_duration
             FROM listen
             WHERE strftime('%Y', date)='{year}'
             GROUP BY strftime('%m', date)
@@ -354,7 +354,7 @@ def monthly_total(year):
     cursor = connection.cursor()
 
     cursor.execute(f"""
-        SELECT COUNT(*) as count, SUM(duration) as duration, strftime('%Y-%m', date) as month
+        SELECT COUNT(*) AS count, SUM(duration) AS duration, strftime('%Y-%m', date) AS month
         FROM listen
         WHERE strftime('%Y', date)='{year}'
         GROUP BY month
@@ -414,7 +414,7 @@ def daily_total(year):
     cursor = connection.cursor()
 
     cursor.execute(f"""
-        SELECT COUNT(*) as count, SUM(duration) as duration, strftime('%Y-%m-%d', date) as day
+        SELECT COUNT(*) AS count, SUM(duration) AS duration, strftime('%Y-%m-%d', date) AS day
         FROM listen
         WHERE strftime('%Y', date)='{year}'
         GROUP BY day
