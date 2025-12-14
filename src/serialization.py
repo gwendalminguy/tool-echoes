@@ -5,6 +5,7 @@ Module containing functions to serialize statistics from the history database.
 import os
 import json
 import shutil
+import calendar
 
 
 def export_statistics(titles, artists, genres, counts, durations, months, days, year):
@@ -58,18 +59,41 @@ def export_statistics(titles, artists, genres, counts, durations, months, days, 
             "duration": int(int(item["length"]) / 60),
         })
 
+    # CALENDAR
+    for i in range(12):
+        month_key = f"{i + 1:02d}"
+
+        result["calendar"]["months"][month_key] = {
+            "summary": {
+                "top_artist": None,
+                "duration": 0,
+                "total_count": 0,
+                "total_duration": 0,
+            },
+            "days": {}
+        }
+
+        days_in_month = calendar.monthrange(int(year), int(month_key))[1]
+
+        for day in range(1, days_in_month + 1):
+            day_key = f"{day:02d}"
+
+            result["calendar"]["months"][month_key]["days"][day_key] = {
+                "top_artist": None,
+                "duration": 0,
+                "total_count": 0,
+                "total_duration": 0,
+            }
+
     # MONTHS
     for i in range(len(months["monthly_total"])):
         month_key = months["monthly_total"][i]["month"][5:]
 
-        result["calendar"]["months"][month_key] = {
-            "summary": {
-                "top_artist": months["monthly_top_artist"][i]["artist"],
-                "duration": round(int(months["monthly_top_artist"][i]["duration"]) / 60),
-                "total_count": int(months["monthly_total"][i]["count"]),
-                "total_duration": round(int(months["monthly_total"][i]["duration"]) / 60),
-            },
-            "days": {}
+        result["calendar"]["months"][month_key]["summary"] = {
+            "top_artist": months["monthly_top_artist"][i]["artist"],
+            "duration": round(int(months["monthly_top_artist"][i]["duration"]) / 60),
+            "total_count": int(months["monthly_total"][i]["count"]),
+            "total_duration": round(int(months["monthly_total"][i]["duration"]) / 60),
         }
 
     # DAYS
