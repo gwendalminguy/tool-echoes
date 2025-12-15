@@ -70,20 +70,17 @@ function DashboardDisplay() {
 
   return (
     <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 p-6">
-      <ItemCard cardClass={invisibleCard} data={totalUniqueArtists} unit="artists" />
-      <ItemCard cardClass={invisibleCard} data={totalUniqueGenres} unit="genres" />
-      <ItemCard cardClass={invisibleCard} data={totalUniqueTitles} unit="titles" />
+      <ItemCard cardClass={visibleCard} data={totalUniqueArtists} unit="artists" />
+      <ItemCard cardClass={visibleCard} data={totalUniqueGenres} unit="genres" />
+      <ItemCard cardClass={visibleCard} data={totalUniqueTitles} unit="titles" />
 
       <TopCard cardClass={visibleCard} name="Top Artists" data={dataArtists} unit="minutes" />
       <TopCard cardClass={visibleCard} name="Top Genres" data={dataGenres} unit="minutes" />
       <TopCard cardClass={visibleCard} name="Top Titles" data={dataTitles} unit="times" />
 
-      <NumberCard cardClass={visibleCard} name="Average Daily Count" data={averageDailyCount} unit="titles" />
-      <NumberCard cardClass={visibleCard} name="Average Monthly Count" data={averageMonthlyCount} unit="titles" />
-      <NumberCard cardClass={visibleCard} name="Total Count" data={totalCount} unit="titles" />
-      <NumberCard cardClass={visibleCard} name="Average Daily Duration" data={averageDailyDuration} unit="minutes" />
-      <NumberCard cardClass={visibleCard} name="Average Monthly Duration" data={averageMonthlyDuration} unit="minutes" />
-      <NumberCard cardClass={visibleCard} name="Total Duration" data={totalDuration} unit="minutes" />
+      <NumberCard cardClass={visibleCard} name="Daily Average" dataCount={averageDailyCount} dataDuration={averageDailyDuration} />
+      <NumberCard cardClass={visibleCard} name="Monthly Average" dataCount={averageMonthlyCount} dataDuration={averageMonthlyDuration} />
+      <NumberCard cardClass={visibleCard} name="Total" dataCount={totalCount} dataDuration={totalDuration} />
 
       <ChartCard cardClass={visibleCard} name="Chart" />
     </div>
