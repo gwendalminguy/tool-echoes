@@ -140,9 +140,7 @@ function ChartCard({ cardClass, name }) {
       </div>
 
       {/* Months */}
-      {view === "days" && (
-        <MonthSelector allMonths={allMonths} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
-      )}
+      <MonthSelector allMonths={allMonths} view={view} selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
     </div>
   );
 }
