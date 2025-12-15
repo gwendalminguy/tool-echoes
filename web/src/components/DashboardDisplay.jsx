@@ -60,8 +60,8 @@ function DashboardDisplay() {
 
     setDataTitles(
       Object.values(statistics.top.titles).map((item) => ({
-        primary: `${item.title} - ${item.artist}`,
-        secondary: `${item.times.toLocaleString("fr-FR")} times`,
+        primary: `${item.title}`,
+        secondary: `${item.artist} • ${item.times.toLocaleString("fr-FR")} times`,
       }))
     );
   }, [statistics]);
