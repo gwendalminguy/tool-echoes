@@ -9,8 +9,9 @@ import MonthSelector from "../MonthSelector";
 function ChartCard({ cardClass, name }) {
   const { statistics, loading } = useStatistics();
 
+  const currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [metric, setMetric] = useState("duration");
-  const [selectedMonth, setSelectedMonth] = useState("12");
   const [view, setView] = useState("months");
 
   if (loading) return <div className={cardClass}>Loading…</div>;
