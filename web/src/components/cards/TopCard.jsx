@@ -28,7 +28,7 @@ function TopCard({ cardClass, name, data }) {
         <ul className="list space-y-2">
           {pageData.map((item, index) => (
             <li key={page * pageSize + index} className="list-row pt-1 pb-3">
-              <div className="text-3xl font-thin opacity-50 tabular-nums">
+              <div className="text-3xl font-thin text-primary/50 tabular-nums">
                 {String(page * pageSize + index + 1).padStart(2, "0")}
               </div>
               <div className="list-col-grow">
@@ -41,7 +41,7 @@ function TopCard({ cardClass, name, data }) {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-evenly items-center mt-4 text-sm">
+      <div className="flex justify-evenly items-center mt-5 text-sm">
         <button disabled={page === 0} onClick={() => setPage((p) => p - 1)} className={`px-2 cursor-pointer ${page === 0 && "text-gray-400"}`}>
           ←
         </button>
