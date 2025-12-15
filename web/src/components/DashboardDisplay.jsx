@@ -47,21 +47,21 @@ function DashboardDisplay() {
     setDataArtists(
       Object.values(statistics.top.artists).map((item) => ({
         primary: item.artist,
-        secondary: item.duration,
+        secondary: `${item.duration.toLocaleString("fr-FR")} minutes`,
       }))
     );
 
     setDataGenres(
       Object.values(statistics.top.genres).map((item) => ({
         primary: item.genre,
-        secondary: item.duration,
+        secondary: `${item.duration.toLocaleString("fr-FR")} minutes`,
       }))
     );
 
     setDataTitles(
       Object.values(statistics.top.titles).map((item) => ({
-        primary: `${item.artist} - ${item.title}`,
-        secondary: item.times,
+        primary: `${item.title} - ${item.artist}`,
+        secondary: `${item.times.toLocaleString("fr-FR")} times`,
       }))
     );
   }, [statistics]);
@@ -74,9 +74,9 @@ function DashboardDisplay() {
       <ItemCard cardClass={visibleCard} data={totalUniqueGenres} unit="genres" />
       <ItemCard cardClass={visibleCard} data={totalUniqueTitles} unit="titles" />
 
-      <TopCard cardClass={visibleCard} name="Top Artists" data={dataArtists} unit="minutes" />
-      <TopCard cardClass={visibleCard} name="Top Genres" data={dataGenres} unit="minutes" />
-      <TopCard cardClass={visibleCard} name="Top Titles" data={dataTitles} unit="times" />
+      <TopCard cardClass={visibleCard} name="Top Artists" data={dataArtists} />
+      <TopCard cardClass={visibleCard} name="Top Genres" data={dataGenres} />
+      <TopCard cardClass={visibleCard} name="Top Titles" data={dataTitles} />
 
       <NumberCard cardClass={visibleCard} name="Daily Average" dataCount={averageDailyCount} dataDuration={averageDailyDuration} />
       <NumberCard cardClass={visibleCard} name="Monthly Average" dataCount={averageMonthlyCount} dataDuration={averageMonthlyDuration} />
