@@ -8,13 +8,14 @@ import shutil
 import calendar
 
 
-def export_statistics(titles, artists, genres, albums, counts, durations, months, days, year):
+def export_statistics(titles, artists, genres, albums, items, counts, durations, months, days, year):
     result = {
         "summary": {
             "items": {
-                "total_unique_titles": counts["total_unique_titles"],
-                "total_unique_artists": counts["total_unique_artists"],
-                "total_unique_genres": counts["total_unique_genres"],
+                "total_unique_titles": items["total_unique_titles"],
+                "total_unique_artists": items["total_unique_artists"],
+                "total_unique_genres": items["total_unique_genres"],
+                "total_unique_albums": items["total_unique_albums"],
             },
             "counts": {
                 "average_daily_count": round(int(counts["average_daily_count"])),

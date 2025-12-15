@@ -9,7 +9,7 @@ import argparse
 from datetime import datetime
 
 from analyze import top_titles, top_artists, top_genres, top_albums
-from analyze import total_unique_titles, total_unique_artists, total_unique_genres
+from analyze import total_unique_titles, total_unique_artists, total_unique_genres, total_unique_albums
 from analyze import average_daily_count, average_monthly_count, total_count
 from analyze import average_daily_duration, average_monthly_duration, total_duration
 from analyze import monthly_top_artist, monthly_total, daily_average
@@ -34,10 +34,13 @@ def main():
     artists = top_artists(year, limit)
     genres = top_genres(year, limit)
     albums = top_albums(year, limit)
-    counts = {
+    items = {
         "total_unique_titles": total_unique_titles(year),
         "total_unique_artists": total_unique_artists(year),
         "total_unique_genres": total_unique_genres(year),
+        "total_unique_albums": total_unique_albums(year)
+    }
+    counts = {
         "average_daily_count": average_daily_count(year),
         "average_monthly_count": average_monthly_count(year),
         "total_count": total_count(year)
@@ -57,7 +60,7 @@ def main():
         "daily_total": daily_total(year)
     }
 
-    export_statistics(titles, artists, genres, albums, counts, durations, months, days, year)
+    export_statistics(titles, artists, genres, albums, items, counts, durations, months, days, year)
     update_index(year)
     copy_statistics(year)
 

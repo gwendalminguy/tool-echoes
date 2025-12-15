@@ -184,6 +184,28 @@ def total_unique_genres(year):
     return count
 
 
+def total_unique_albums(year):
+    """
+    Computes total unique albums count.
+
+    Return: total count
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT COUNT(DISTINCT album)
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+    """)
+    count = cursor.fetchone()[0]
+    connection.close()
+
+    if count == 0:
+        sys.exit(f"No Data ({year})")
+    return count
+
+
 def average_daily_count(year):
     """
     Computes average daily count.
