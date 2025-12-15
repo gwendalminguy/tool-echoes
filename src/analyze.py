@@ -88,6 +88,31 @@ def top_genres(year, limit):
     return items
 
 
+def top_albums(year, limit):
+    """
+    Computes top albums ordered by total duration.
+
+    Return: dictionary of result
+    """
+    connection = sqlite3.connect(DB_PATH)
+    connection.row_factory = sqlite3.Row
+    cursor = connection.cursor()
+    cursor.execute(f"""
+        SELECT album, artist, duration, SUM(duration) AS length
+        FROM listen
+        WHERE strftime('%Y', date)='{year}'
+        GROUP BY artist, album
+        ORDER BY length DESC
+        LIMIT '{limit}'
+    """)
+    items = cursor.fetchall()
+    connection.close()
+
+    if len(items) == 0:
+        sys.exit(f"No Data ({year})")
+    return items
+
+
 # ---------- COUNTS ----------
 
 def total_unique_titles(year):

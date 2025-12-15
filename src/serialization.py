@@ -8,7 +8,7 @@ import shutil
 import calendar
 
 
-def export_statistics(titles, artists, genres, counts, durations, months, days, year):
+def export_statistics(titles, artists, genres, albums, counts, durations, months, days, year):
     result = {
         "summary": {
             "items": {
@@ -32,6 +32,7 @@ def export_statistics(titles, artists, genres, counts, durations, months, days, 
             "titles": [],
             "artists": [],
             "genres": [],
+            "albums": [],
         },
 
         "calendar": {
@@ -56,6 +57,13 @@ def export_statistics(titles, artists, genres, counts, durations, months, days, 
     for item in genres:
         result["top"]["genres"].append({
             "genre": item["genre"],
+            "duration": int(int(item["length"]) / 60),
+        })
+
+    for item in albums:
+        result["top"]["albums"].append({
+            "album": item["album"],
+            "artist": item["artist"],
             "duration": int(int(item["length"]) / 60),
         })
 
