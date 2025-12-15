@@ -28,7 +28,7 @@ def main():
 
     initialize_history()
 
-    limit = 5
+    limit = 25
 
     titles = top_titles(year, limit)
     artists = top_artists(year, limit)
