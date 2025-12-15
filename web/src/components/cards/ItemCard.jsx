@@ -1,7 +1,8 @@
-import { User, Music, AudioLines } from "lucide-react";
+import { DiscAlbum, User, Music, AudioLines } from "lucide-react";
 
 function ItemCard({ cardClass, data, unit }) {
   const iconMap = {
+    albums: DiscAlbum,
     artists: User,
     genres: Music,
     titles: AudioLines,
