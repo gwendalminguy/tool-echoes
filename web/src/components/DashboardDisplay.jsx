@@ -77,7 +77,7 @@ function DashboardDisplay() {
   if (loading) return <div className={visibleCard}>Loading…</div>;
 
   return (
-    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 p-6">
+    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 p-5">
       <ItemCard cardClass={visibleCard} data={totalUniqueArtists} unit="artists" />
       <ItemCard cardClass={visibleCard} data={totalUniqueAlbums} unit="albums" />
       <ItemCard cardClass={visibleCard} data={totalUniqueTitles} unit="titles" />
