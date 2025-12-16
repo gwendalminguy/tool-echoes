@@ -2,11 +2,13 @@ import { useState, useMemo } from "react";
 
 import { BarChart, Bar, ReferenceLine, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LabelList } from "recharts";
 
+import { useTheme } from "../../context/ThemeContext";
 import { useStatistics } from "../../context/StatisticsContext";
 
 import MonthSelector from "../MonthSelector";
 
 function ChartCard({ cardClass, name }) {
+  const { theme } = useTheme();
   const { statistics, loading } = useStatistics();
 
   const currentMonth = String(new Date().getMonth() + 1).padStart(2, "0");
@@ -97,9 +99,9 @@ function ChartCard({ cardClass, name }) {
       {/* Chart */}
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 25, right: 5, left: 0, bottom: 20 }}>
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey={view === "months" ? "monthNumber" : "dayNumber"} />
-          <YAxis width="auto" />
+          <CartesianGrid stroke={theme === "light" ? "#ccc" : "#444"} strokeDasharray="5 5" />
+          <XAxis dataKey={view === "months" ? "monthNumber" : "dayNumber"} stroke={theme === "light" ? "#555" : "#777"} />
+          <YAxis width="auto" stroke={theme === "light" ? "#555" : "#777"} />
           <Tooltip
             formatter={(value) =>
               metric === "totalCount"
@@ -127,7 +129,7 @@ function ChartCard({ cardClass, name }) {
           )}
           <Bar dataKey={metric} fill="#4f46e5" barSize={view === "months" ? 75 : 25} radius={view === "months" ? [5, 5, 0, 0] : [3, 3, 0, 0]}>
             {metric === "duration" && (
-              <LabelList dataKey="artist" position="top" style={{ fontSize: view === "months" ? 12 : 8, fill: "#333" }} />
+              <LabelList dataKey="artist" position="top" style={{ fontSize: view === "months" ? 12 : 8, fill: theme === "light" ? "#555" : "#777" }} />
             )}
           </Bar>
         </BarChart>
