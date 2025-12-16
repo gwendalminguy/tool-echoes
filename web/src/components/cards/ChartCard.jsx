@@ -45,9 +45,9 @@ function ChartCard({ cardClass, name }) {
         dayNumber: day,
         monthName: month,
         artist: data?.top_artist ?? "",
-        duration: data?.duration ?? 0,
-        totalCount: data?.total_count ?? 0,
-        totalDuration: data?.total_duration ?? 0,
+        duration: data?.duration ?? null,
+        totalCount: data?.total_count ?? null,
+        totalDuration: data?.total_duration ?? null,
     }));
   };
 
@@ -63,17 +63,17 @@ function ChartCard({ cardClass, name }) {
       monthNumber: m.number,
       monthName: m.name,
       artist: data?.top_artist ?? "",
-      duration: data?.duration ?? 0,
-      averageCount: data?.average_daily_count ?? 0,
-      averageDuration: data?.average_daily_duration ?? 0,
-      totalCount: data?.total_count ?? 0,
-      totalDuration: data?.total_duration ?? 0,
+      duration: data?.duration ?? null,
+      averageCount: data?.average_daily_count ?? null,
+      averageDuration: data?.average_daily_duration ?? null,
+      totalCount: data?.total_count ?? null,
+      totalDuration: data?.total_duration ?? null,
     };
   });
 
   const dataYear = {
-    averageCount: summary.counts.average_monthly_count,
-    averageDuration : summary.durations.average_monthly_duration,
+    averageCount: summary?.counts?.average_monthly_count ?? null,
+    averageDuration : summary?.durations?.average_monthly_duration ?? null,
   };
 
   const data = view === "months"
@@ -84,7 +84,7 @@ function ChartCard({ cardClass, name }) {
     <div className={`${cardClass} col-span-full`}>
       <div className="flex flex-row justify-between">
         {/* Title */}
-        <h2 className="text-lg font-semibold mb-4">{name}</h2>
+        <h2 className="text-lg font-semibold mb-5">{name}</h2>
 
         {/* Chart Tabs */}
         <div className="tabs tabs-box h-8">

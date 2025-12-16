@@ -3,13 +3,7 @@ import { useState, useEffect } from "react";
 function TopCard({ cardClass, name, data }) {
   const [page, setPage] = useState(0);
   const pageSize = 5;
-
-  if (!data) return <div className={cardClass}>No Data</div>;
-
   const pageCount = Math.ceil(data.length / pageSize);
-
-  const startIndex = page * pageSize + 1;
-
   const pageData = data.slice(
     page * pageSize,
     page * pageSize + pageSize
@@ -19,15 +13,17 @@ function TopCard({ cardClass, name, data }) {
     setPage(0);
   }, [data]);
 
+  if (!data || data.length === 0) return <div className={cardClass}>No Data</div>;
+
   return (
     <div className={`${cardClass} flex flex-col justify-between`}>
       <div className="">
-        <h2 className="text-lg font-semibold mb-4">{name}</h2>
+        <h2 className="text-lg font-semibold mb-5">{name}</h2>
 
         {/* Data */}
         <ul className="list space-y-2">
           {pageData.map((item, index) => (
-            <li key={page * pageSize + index} className="list-row pt-1 pb-3">
+            <li key={page * pageSize + index} className="list-row p-1 pb-3">
               <div className="text-3xl font-thin text-primary/50 tabular-nums">
                 {String(page * pageSize + index + 1).padStart(2, "0")}
               </div>
