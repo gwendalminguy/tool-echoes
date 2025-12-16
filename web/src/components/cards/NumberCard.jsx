@@ -1,6 +1,6 @@
 function NumberCard({ cardClass, name, dataCount, dataDuration }) {
 
-  if (dataCount == null || dataDuration == null) return <div className={cardClass}>No Data</div>;
+  if (dataCount === null || dataDuration === null) return <div className={cardClass}>No Data</div>;
 
   return (
     <div className={`${cardClass} flex flex-col justify-between`}>
