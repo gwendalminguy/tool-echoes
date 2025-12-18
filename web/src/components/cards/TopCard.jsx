@@ -24,7 +24,7 @@ function TopCard({ cardClass, name, data }) {
         <ul className="list space-y-2">
           {pageData.map((item, index) => (
             <li key={page * pageSize + index} className="list-row p-1 pb-3">
-              <div className="text-3xl font-thin text-primary/50 tabular-nums">
+              <div className="text-3xl font-thin text-primary/80 tabular-nums">
                 {String(page * pageSize + index + 1).padStart(2, "0")}
               </div>
               <div className="list-col-grow">
