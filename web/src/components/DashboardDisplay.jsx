@@ -77,21 +77,20 @@ function DashboardDisplay() {
   if (loading) return <div className={visibleCard}>Loading…</div>;
 
   return (
-    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 p-5">
+    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 p-5">
       <ItemCard cardClass={visibleCard} data={totalUniqueArtists} unit="artists" />
       <ItemCard cardClass={visibleCard} data={totalUniqueAlbums} unit="albums" />
       <ItemCard cardClass={visibleCard} data={totalUniqueTitles} unit="titles" />
-      <ItemCard cardClass={visibleCard} data={totalUniqueGenres} unit="genres" />
+      {/* <ItemCard cardClass={visibleCard} data={totalUniqueGenres} unit="genres" /> */}
 
       <TopCard cardClass={visibleCard} name="Top Artists" data={dataArtists} />
       <TopCard cardClass={visibleCard} name="Top Albums" data={dataAlbums} />
       <TopCard cardClass={visibleCard} name="Top Titles" data={dataTitles} />
-      <TopCard cardClass={visibleCard} name="Top Genres" data={dataGenres} />
+      {/* <TopCard cardClass={visibleCard} name="Top Genres" data={dataGenres} /> */}
 
       <NumberCard cardClass={visibleCard} name="Daily Average" dataCount={averageDailyCount} dataDuration={averageDailyDuration} />
       <NumberCard cardClass={visibleCard} name="Monthly Average" dataCount={averageMonthlyCount} dataDuration={averageMonthlyDuration} />
       <NumberCard cardClass={visibleCard} name="Total" dataCount={totalCount} dataDuration={totalDuration} />
-      <NumberCard cardClass={visibleCard} name="Undefined" dataCount={0} dataDuration={0} />
 
       <ChartCard cardClass={visibleCard} name="Chart" />
     </div>
