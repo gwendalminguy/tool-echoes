@@ -1,31 +1,30 @@
 # Echoes
 
-Echoes is a simple tool logging a history of music listened locally, and generating nicely designed statistics about artists, songs and genres for each year.
+Echoes is a simple tool logging a history of music listened locally, and generating nicely designed statistics about artists, songs and genres for each year with a dashboard visualization.
 
 ## 📋 Description
 
-Echoes logs an entry in a history database for every song listened locally through a player. Statistics are regularly exported for the current year, including a top five of titles, artists and genres, among others. Those statistics are saved in JSON format in the `data/exports/` directory (automatically created if not existing), are then used to generate a nice visualization. The aim of this project is to have the opportunity to get statistics about some listening activity from local files using a player, without a streaming service.
+Echoes logs an entry in a history database for every song listened locally through a player. Statistics are regularly exported for the current year, including a top five of titles, artists and genres, among others. Those statistics are saved in JSON format in the `data/exports/` directory (automatically created if not existing), are then used to generate a nice dashboard visualization. The aim of this project is to have the opportunity to get statistics about some listening activity from local files using a player, without a streaming service.
 
 ### Statistics:
 
 Available statistics saved in the JSON file for each year include the following:
 
-- Top Five Titles
-- Top Five Artists
-- Top Five Genres
+- Top 25 Titles
+- Top 25 Artists
+- Top 25 Genres
+- Top 25 Albums
 - Total Unique Titles Count
 - Total Unique Artists Count
 - Total Unique Genres Count
-- Average Daily Count
-- Average Monthly Count
-- Total Count
-- Monthly Top Artist & Duration (minutes)
-- Monthly Total Duration (minutes)
-- Average Daily Duration (minutes)
-- Average Monthly Duration (minutes)
-- Total Duration (minutes)
-- Maximum Activity Day
-- Maximum Activity Month
+- Total Unique Albums Count
+- Average Daily Count & Duration
+- Average Monthly Count & Duration
+- Total Count & Duration
+- Monthly Top Artist
+- Monthly Total Count & Duration
+- Daily Top Artist
+- Daily Total Count & Duration
 
 ## 📂 Project Structure
 
@@ -34,15 +33,14 @@ The project contains several files and directories, which are the following:
 | Files | Description |
 | :---- | :---------- |
 | `data/history.db` | The history database file. |
-| `data/exports/*.json` | The JSON files containing statistics for each year. |
-| [`src/analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/analyze.py) | The module containing functions to extract statistics from the history database. |
+| `data/exports/index.json` | The JSON files listing available years. |
+| `data/exports/<year>.json` | The JSON files containing statistics for each year. |
+| [`src/analyze.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/analyze.py) | The module containing functions to create statistics from the history database. |
 | [`src/extract.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/extract.py) | The python file containing the script to extract statistics. |
 | [`src/log.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/log.py) | The python file containing the script to log an entry in the history database. |
 | [`src/management.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/management.py) | The module containing functions to manage the history database. |
 | [`src/serialization.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/serialization.py) | The module containing functions to serialize statistics in JSON format. |
-| [`web/index.html`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/index.html) | The HTML file defining the structure of the statistics visualization. |
-| [`web/script.js`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/script.js) | The JavaScript file defining the behaviour of the statistics visualization. |
-| [`web/style.css`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/style.css) | The CSS file defining the style of the statistics visualization. |
+| [`web/`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/) | The React dashboard application for statistics visualization. |
 | [`install.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/install.sh) | The bash script setting automations to log entries and export statistics. |
 | [`run.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/run.sh) | The bash script launching statistics visualization in a web browser. |
 
@@ -68,7 +66,7 @@ $ chmod u+x install.sh
 $ ./install.sh
 ```
 
-This will allow the execution on a regular schedule of `log.py` and `extract.py` scripts. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/` directory. The user might be prompted by the system to authorize the automations, to allow scripts execution.
+This will allow the execution on a regular schedule of `log.py` and `extract.py` scripts, and install dependencies. The statistics for the current year will regularly be exported as a JSON file in the `data/exports/` directory. The user might be prompted by the system to authorize the automations, to allow scripts execution.
 
 <details>
 	<summary><b>Manual Installation Procedure</b></summary>
@@ -84,14 +82,13 @@ This will invoke a text editor, in which the following lines must be written (pa
 
 ```
 * * * * * <path/to/python3> <path/to/tool-echoes/src/log.py>
-* * * * 0 <path/to/python3> <path/to/tool-echoes/src/extract.py>
+0 */6 * * * <path/to/python3> <path/to/tool-echoes/src/extract.py>
 ```
 
-Three other commands need to be run, in order to let Echoes work. The first one will create the `data/exports/` directory, the second one will create a symbolic link for the serialized data, and the third one will add to `run.py` the execution permission:
+Two other commands need to be run, in order to let Echoes work. The first one will create the `data/exports/` directory, and the second one will add to `run.py` the execution permission:
 
 ```
 $ mkdir -p data/exports
-$ ln -s ../data/exports web/exports
 $ chmod u+x run.py
 ```
 </details>
@@ -104,22 +101,23 @@ In order to visualize the statistics, the `run.sh` bash script must be launched:
 $ ./run.sh
 ```
 
-This will open the default web browser and display several statistics for the current year. Navigation to the previous/next year or card is possible using the arrow buttons. Once done, the server needs to be shut down using Ctrl+C.
+This will open the default web browser and display a dashboard with several statistics for the current year. Navigation to the previous/next year or card is possible using the arrow buttons at the top, in the navigation bar. Once done, the server needs to be shut down using Ctrl+C.
 
 <details>
 	<summary><b>Manual Running Procedure</b></summary>
 <br>
 
-If desired, this can also be achieved manually, using the following command at the root of the Echoes directory:
+If desired, this can also be achieved manually, using the following commands at the root of the Echoes directory:
 
 ```
-$ python3 -m http.server -d web
+$ cd web/
+$ npm run dev
 ```
 
 The following URL should then be copied into any web browser:
 
 ```
-http://localhost:8000/
+http://localhost:5173/
 ```
 </details>
 
@@ -127,7 +125,7 @@ http://localhost:8000/
 	<summary><b>Manual Statistics Update</b></summary>
 <br>
 
-Although the statistics are updated automatically every hour, it be achieved manually using the following command:
+Although the statistics are updated automatically every four hours, it be achieved manually using the following command:
 
 ```
 $ ./src/extract.py [-y <year>]
@@ -136,10 +134,6 @@ $ ./src/extract.py [-y <year>]
 ### Year:
 
 If desired, the script can be launched to extract statistics for any previous year (as long as the history database contains matching entries). The desired year can then be chosen by calling it as a command-line argument with **-y** or **--year**, followed by the year itself.
-
-### Month:
-
-The month of the year up to which the monthly top artist is computed can also be chosen, by calling it as a command-line argument with **-m** or **--month**, followed by the month number itself.
 </details>
 
 ## 🚫 Limitations
