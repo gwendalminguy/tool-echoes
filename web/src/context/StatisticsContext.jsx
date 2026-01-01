@@ -29,7 +29,7 @@ export function StatisticsProvider({ year, children }) {
   }, [year]);
 
   return (
-    <StatisticsContext.Provider value={{ statistics, loading, prev, next }}>
+    <StatisticsContext.Provider value={{ statistics, loading, year, prev, next }}>
       {children}
     </StatisticsContext.Provider>
   );
