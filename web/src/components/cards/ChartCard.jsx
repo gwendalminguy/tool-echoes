@@ -16,12 +16,6 @@ function ChartCard({ cardClass, name }) {
   const [metric, setMetric] = useState("duration");
   const [view, setView] = useState("months");
 
-  if (loading) return <div className={cardClass}>Loading…</div>;
-  if (!statistics) return <div className={cardClass}>No Data</div>;
-
-  const { summary, calendar } = statistics;
-  const { months } = calendar;
-
   const allMonths = [
     { number: "01", name: "January" },
     { number: "02", name: "February" },
@@ -36,6 +30,9 @@ function ChartCard({ cardClass, name }) {
     { number: "11", name: "November" },
     { number: "12", name: "December" },
   ];
+
+  const months = statistics?.calendar?.months ?? {};
+  const summary = statistics?.summary ?? null;
 
   const getDaysData = (monthNumber) => {
     const days = months?.[monthNumber]?.days ?? {};
@@ -59,7 +56,7 @@ function ChartCard({ cardClass, name }) {
   );
 
   const dataMonths = allMonths.map((m) => {
-    const data = months?.[m.number]?.summary;
+    const data = months?.[m.number]?.summary ?? null;
 
     return {
       monthNumber: m.number,
@@ -81,6 +78,9 @@ function ChartCard({ cardClass, name }) {
   const data = view === "months"
     ? dataMonths
     : dataDays;
+
+  if (loading) return <div className={cardClass}>Loading…</div>;
+  if (!statistics) return <div className={cardClass}>No Data</div>;
 
   return (
     <div className={`${cardClass} col-span-full`}>
