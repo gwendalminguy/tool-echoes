@@ -80,7 +80,7 @@ function ChartCard({ cardClass, name }) {
     : dataDays;
 
   if (loading) return <div className={cardClass}>Loading…</div>;
-  if (!statistics) return <div className={cardClass}>No Data</div>;
+  if (!statistics) return <div className={`${cardClass} col-span-full`}>No Data</div>;
 
   return (
     <div className={`${cardClass} col-span-full`}>

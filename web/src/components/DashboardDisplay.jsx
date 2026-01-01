@@ -74,7 +74,8 @@ function DashboardDisplay() {
     );
   }, [statistics]);
 
-  if (loading) return <div className={visibleCard}>Loading…</div>;
+  if (loading) return <div className={`${invisibleCard} text-center`}>Loading…</div>;
+  if (!statistics) return <div className={`${invisibleCard} text-center`}>No Data</div>;
 
   return (
     <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 p-5">
