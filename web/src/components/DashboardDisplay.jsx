@@ -7,11 +7,14 @@ import TopCard from "./cards/TopCard";
 import NumberCard from "./cards/NumberCard";
 import ChartCard from "./cards/ChartCard";
 
+import LoadingDisplay from "./LoadingDisplay";
+import NoDataDisplay from "./NoDataDisplay";
+
 const visibleCard = "bg-base-100 rounded-2xl shadow-lg p-6 border border-base-200";
 const invisibleCard = "rounded-2xl p-6";
 
 function DashboardDisplay() {
-  const { statistics, loading } = useStatistics();
+  const { statistics, loading, year } = useStatistics();
 
   const [totalUniqueArtists, setTotalUniqueArtists] = useState(null);
   const [totalUniqueAlbums, setTotalUniqueAlbums] = useState(null);
@@ -74,11 +77,11 @@ function DashboardDisplay() {
     );
   }, [statistics]);
 
-  if (loading) return <div className={`${invisibleCard} text-center`}>Loading…</div>;
-  if (!statistics) return <div className={`${invisibleCard} text-center`}>No Data</div>;
+  if (loading) return <LoadingDisplay cardClass={invisibleCard} />;
+  if (!statistics) return <NoDataDisplay cardClass={invisibleCard} year={year} />;
 
   return (
-    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 p-5">
+    <div className="bg-base-200 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 p-5 pt-25 w-full">
       <ItemCard cardClass={visibleCard} data={totalUniqueArtists} unit="artists" />
       <ItemCard cardClass={visibleCard} data={totalUniqueAlbums} unit="albums" />
       <ItemCard cardClass={visibleCard} data={totalUniqueTitles} unit="titles" />

@@ -15,9 +15,11 @@ function App() {
   return (
     <ThemeProvider>
       <StatisticsProvider year={year}>
-        <Navbar year={year} setYear={setYear} />
-        <div className="pt-20">
-          <DashboardDisplay />
+        <div className="min-h-screen flex flex-col">
+          <Navbar year={year} setYear={setYear} />
+          <main className="flex-1 flex items-center justify-center bg-base-200">
+            <DashboardDisplay year={year} />
+          </main>
         </div>
       </StatisticsProvider>
     </ThemeProvider>
