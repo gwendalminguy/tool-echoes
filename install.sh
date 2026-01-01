@@ -2,7 +2,7 @@
 
 set -e
 
-# Checking Requirements
+# Checking Requirements (npm - python3)
 if ! command -v npm >/dev/null 2>&1; then
   echo "🔴 Failure: npm required but not found."
   exit 1
@@ -23,14 +23,14 @@ PYTHON=$(which python3)
 mkdir -p "$ROOT_DIRECTORY/data/exports"
 chmod u+x "$ROOT_DIRECTORY/run.sh"
 
-# Installing Dependencies
+# Installing Frontend Dependencies
 echo "🟡 Installing dependencies..."
 (
   cd "$WEB_DIRECTORY"
   npm install
 )
 
-# Setting Automations
+# Setting Cron Automations
 echo "🟡 Setting automations..."
 (crontab -l 2>/dev/null; \
 echo "* * * * * $PYTHON $LOG"; \
