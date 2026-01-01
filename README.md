@@ -42,7 +42,6 @@ The project contains several files and directories, which are the following:
 | [`src/serialization.py`](https://github.com/gwendalminguy/tool-echoes/blob/main/src/serialization.py) | The module containing functions to serialize statistics in JSON format. |
 | [`web/`](https://github.com/gwendalminguy/tool-echoes/blob/main/web/) | The React dashboard application for statistics visualization. |
 | [`install.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/install.sh) | The bash script setting automations to log entries and export statistics. |
-| [`run.sh`](https://github.com/gwendalminguy/tool-echoes/blob/main/run.sh) | The bash script launching statistics visualization in a web browser. |
 
 ## ⚙️ Installation
 
@@ -85,29 +84,16 @@ This will invoke a text editor, in which the following lines must be written (pa
 0 */6 * * * <path/to/python3> <path/to/tool-echoes/src/extract.py>
 ```
 
-Two other commands need to be run, in order to let Echoes work. The first one will create the `data/exports/` directory, and the second one will add to `run.py` the execution permission:
+One other command needs to be run, in order to let Echoes work. It will create the `data/exports/` directory:
 
 ```
 $ mkdir -p data/exports
-$ chmod u+x run.py
 ```
 </details>
 
 ## 🖥️ Usage
 
-In order to visualize the statistics, the `run.sh` bash script must be launched:
-
-```
-$ ./run.sh
-```
-
-This will open the default web browser and display a dashboard with several statistics for the current year. Navigation to the previous/next year or card is possible using the arrow buttons at the top, in the navigation bar. Once done, the server needs to be shut down using Ctrl+C.
-
-<details>
-	<summary><b>Manual Running Procedure</b></summary>
-<br>
-
-If desired, this can also be achieved manually, using the following commands at the root of the Echoes directory:
+In order to visualize the statistics, the following commands must be executed at the root of the Echoes directory:
 
 ```
 $ cd web/
@@ -119,7 +105,8 @@ The following URL should then be copied into any web browser:
 ```
 http://localhost:5173/
 ```
-</details>
+
+This will open the default web browser and display a dashboard with several statistics for the current year. Navigation to the previous/next year or card is possible using the arrow buttons at the top, in the navigation bar. Once done, the server needs to be shut down using Ctrl+C.
 
 <details>
 	<summary><b>Manual Statistics Update</b></summary>
