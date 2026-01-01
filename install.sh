@@ -21,7 +21,6 @@ EXTRACT=$(realpath "$ROOT_DIRECTORY/src/extract.py")
 PYTHON=$(which python3)
 
 mkdir -p "$ROOT_DIRECTORY/data/exports"
-chmod u+x "$ROOT_DIRECTORY/run.sh"
 
 # Installing Frontend Dependencies
 echo "🟡 Installing dependencies..."
