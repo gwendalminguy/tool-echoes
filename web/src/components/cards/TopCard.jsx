@@ -17,13 +17,13 @@ function TopCard({ cardClass, name, data }) {
 
   return (
     <div className={`${cardClass} flex flex-col justify-between`}>
-      <div className="">
-        <h2 className="text-lg font-semibold mb-5">{name}</h2>
+      <div className="divide-y divide-base-content/10">
+        <h2 className="text-lg font-semibold mb-3 pb-3">{name}</h2>
 
         {/* Data */}
-        <ul className="list space-y-2">
+        <ul className="list space-y-2 divide-y divide-base-content/10">
           {pageData.map((item, index) => (
-            <li key={page * pageSize + index} className="list-row p-1 pb-3">
+            <li key={page * pageSize + index} className="flex flex-row gap-4 p-1 pb-3">
               <div className="text-3xl font-thin text-primary/80 tabular-nums">
                 {String(page * pageSize + index + 1).padStart(2, "0")}
               </div>

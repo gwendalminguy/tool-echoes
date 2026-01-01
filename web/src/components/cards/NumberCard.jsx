@@ -59,8 +59,8 @@ function NumberCard({ cardClass, name, dataCount, dataDuration }) {
   if (dataCount === null || dataDuration === null) return <div className={cardClass}>No Data</div>;
 
   return (
-    <div className={`${cardClass} flex flex-col justify-between`}>
-      <h2 className="text-lg font-semibold mb-5">{name}</h2>
+    <div className={`${cardClass} flex flex-col justify-between divide-y divide-base-content/10`}>
+      <h2 className="text-lg font-semibold mb-5 pb-3">{name}</h2>
 
       <div className="grid grid-cols-2 gap-5 divide-x divide-base-content/10">
         {/* Count */}
