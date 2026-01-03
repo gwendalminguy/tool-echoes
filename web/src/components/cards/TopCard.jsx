@@ -2,26 +2,55 @@ import { useState, useEffect } from "react";
 
 function TopCard({ cardClass, name, data }) {
   const [page, setPage] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+  const [direction, setDirection] = useState("right");
+
   const pageSize = 5;
   const pageCount = Math.ceil(data.length / pageSize);
+
   const pageData = data.slice(
     page * pageSize,
     page * pageSize + pageSize
   );
 
+  const changePage = (newPage) => {
+    if (newPage === page) return;
+
+    setDirection(newPage > page ? "right" : "left");
+
+    setIsFading(true);
+
+    setTimeout(() => {
+      setDirection(newPage > page ? "left" : "right");
+    }, 100);
+
+    setTimeout(() => {
+      setPage(newPage);
+      setIsFading(false);
+    }, 200);
+  };
+
   useEffect(() => {
+    setDirection(null);
     setPage(0);
-  }, [data]);
+  }, [data])
 
   if (!data || data.length === 0) return <div className={cardClass}>No Data</div>;
 
   return (
     <div className={`${cardClass} flex flex-col justify-between`}>
-      <div className="divide-y divide-base-content/10">
+      <div className="divide-y divide-base-content/10" >
         <h2 className="text-lg font-semibold mb-3 pb-3">{name}</h2>
 
         {/* Data */}
-        <ul className="list space-y-2 divide-y divide-base-content/10">
+        <ul className={`list space-y-2 divide-y divide-base-content/10 transition-all duration-200 ease-in-out
+          ${isFading
+            ? direction == "right"
+              ? "opacity-0 -translate-x-4"
+              : "opacity-0 translate-x-4"
+            : "opacity-100 translate-x-0"
+          }`
+        }>
           {pageData.map((item, index) => (
             <li key={page * pageSize + index} className="flex flex-row gap-4 p-1 pb-3">
               <div className="text-3xl font-thin text-primary/80 tabular-nums">
@@ -38,17 +67,17 @@ function TopCard({ cardClass, name, data }) {
 
       {/* Pagination */}
       <div className="flex justify-evenly items-center mt-5 text-sm">
-        <button disabled={page === 0} onClick={() => setPage((p) => p - 1)} className={`px-2 cursor-pointer ${page === 0 && "text-gray-400"}`}>
+        <button disabled={page === 0} onClick={() => changePage(page - 1)} className={`px-2 cursor-pointer ${page === 0 && "text-gray-400"}`}>
           ←
         </button>
 
-        <div className="flex flex-row gap-5">
-        {[...Array(pageCount)].map((_, index) => (
-          <button key={index} onClick={() => setPage(index)} className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${index === page ? "bg-primary" : "bg-primary/20"}`} />
-        ))}
+        <div className="flex gap-5">
+          {[...Array(pageCount)].map((_, index) => (
+            <button key={index} onClick={() => changePage(index)} className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${index === page ? "bg-primary" : "bg-primary/20"}`}/>
+          ))}
         </div>
 
-        <button disabled={page === pageCount - 1} onClick={() => setPage((p) => p + 1)} className={`px-2 cursor-pointer ${page === pageCount - 1 && "text-gray-400"}`}>
+        <button disabled={page === pageCount - 1} onClick={() => changePage(page + 1)} className={`px-2 cursor-pointer ${page === pageCount - 1 && "text-gray-400"}`}>
           →
         </button>
       </div>
